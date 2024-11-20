@@ -76,14 +76,19 @@ As a logged in user, On clicking on any workout. The workout info should be disp
 Landing Page
 
 - login
+  
   ![](login.jpg)
 - Register
+  
   ![](register.jpg)
 - dashboard
+  
   ![](dashboard.jpg)
 - daily Tracker
+  
   ![](dailytracker.jpg)
-  -explore workouts
+- explore workouts
+
   ![](explore-workouts.jpg)
 
 ### Data
