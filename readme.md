@@ -21,18 +21,21 @@ Fitness Enthusiast:
 
 ### Features
 
-As a user, If I'm not registered I should be able to register by clicking on the Register button present bellow the login Form
-As a user, while registering to the application I should be able to provide the information like firstname, lastname,email, dob, gender, height, weight, preferred workout type, password and confirm password.
+As a user:
+    - If I'm not registered I should be able to register by clicking on the Register button present bellow the login Form
+    - while registering to the application I should be able to provide the information like firstname, lastname,email, dob, gender, height, weight, preferred workout type, password and confirm password.
 
-As a Registed user, I should be able to login the application by providing my login Creditional such as username and password.
+As a Registed user:
+    - I should be able to login the application by providing my login Creditional such as username and password.
 
-As a logged in user, I should be able to see in the dashboard with my current BMI, stats of my daily workout, Stats of My Step count for one week for each day. The records of Liked Workout workouts and The Records of Previously performed workouts.
-As a logged in user, I pop up should be displa after login in dashboard which acts as an indicator to update the daily tracker with the latest data.
-As a logged in user, I should be able to redirect to the daily tracker page on clicking on daily tracker in the sidebar.
-As a logged in user, After redirecting to the daily tracker page the user should provide the information of their previous day workout.
-As a logged in user, I should be able to redirect to the "Explore Workouts page" on clicking on Explore Workouts in the sidebar.
-As a logged in user, user should be able to see the default workouts list that are suggested based on their vital details. and sould be able to filter the list based on the workout duration, intensity, name of workout.
-As a logged in user, On clicking on any workout. The workout info should be displayed in seperate page with its details like instructions, time, equipement required and multiple video link to see the demo. like button to like the workout and add button to add it to your personalised workout regimen.
+As a logged in user:
+    - I should be able to see in the dashboard with my current BMI, stats of my daily workout, Stats of My Step count for one week for each day. The records of Liked Workout workouts and The Records of Previously performed workouts.
+    - I pop up should be displa after login in dashboard which acts as an indicator to update the daily tracker with the latest data.
+    - I should be able to redirect to the daily tracker page on clicking on daily tracker in the sidebar.
+    - After redirecting to the daily tracker page the user should provide the information of their previous day workout.
+    - I should be able to redirect to the "Explore Workouts page" on clicking on Explore Workouts in the sidebar.
+    - user should be able to see the default workouts list that are suggested based on their vital details. and sould be able to filter the list based on the workout duration, intensity, name of workout.
+    - On clicking on any workout. The workout info should be displayed in seperate page with its details like instructions, time, equipement required and multiple video link to see the demo. like button to like the workout and add button to add it to your personalised workout regimen.
 
 ## Implementation
 
