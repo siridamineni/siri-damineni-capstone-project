@@ -21,46 +21,49 @@ Fitness Enthusiast:
 
 ### Features
 
-User Registration and Login Flow:
-As a New User:
+- User Registration and Login Flow:
+  - As a New User:
+    - I should be able to register by clicking the "Register" button below the login form.
+    During registration,
+    - I should provide the following information: first name, last name, email, date of birth, gender, height, weight, preferred workout type, password, and confirm password.
 
-I should be able to register by clicking the "Register" button below the login form.
-During registration, I should provide the following information: first name, last name, email, date of birth, gender, height, weight, preferred workout type, password, and confirm password.
-As a Registered User:
+  - As a Registered User:
+    - I should be able to log in to the application by entering my username and password.
+      
+- Logged-in User Dashboard:
+ - As a Logged-in User:
 
-I should be able to log in to the application by entering my username and password.
-Logged-in User Dashboard:
-As a Logged-in User:
+  - I should see my dashboard displaying:
+    - Current BMI
+    - Daily workout stats
+    - Weekly step count stats for each day
+    - A list of liked workouts
+    - A record of previously performed workouts
+      
+- Pop-up Notification:
 
-I should see my dashboard displaying:
-Current BMI
-Daily workout stats
-Weekly step count stats for each day
-A list of liked workouts
-A record of previously performed workouts
-Pop-up Notification:
+  - A pop-up should appear after logging in, indicating that I need to update my daily tracker with the latest data.
 
-A pop-up should appear after logging in, indicating that I need to update my daily tracker with the latest data.
-Navigation to Daily Tracker:
-
-I should be able to navigate to the "Daily Tracker" page by clicking the "Daily Tracker" option in the sidebar.
+- Navigation to Daily Tracker:
+  - I should be able to navigate to the "Daily Tracker" page by clicking the "Daily Tracker" option in the sidebar.
 On the Daily Tracker page, I should be able to input my previous day's workout details.
-Explore Workouts Page:
-As a User:
 
-I should be able to explore suggested workouts based on my vital information by clicking "Explore Workouts" in the sidebar.
-I should be able to filter the workout list by:
-Duration
-Intensity
-Name of the workout
-Workout Details Page:
+- Explore Workouts Page:
+  - As a User:
+      - I should be able to explore suggested workouts based on my vital information by clicking "Explore Workouts" in the sidebar.
+      - I should be able to filter the workout list by:
+        - Duration
+        - Intensity
+        - Name of the workout
+
+- Workout Details Page:
 
 On selecting a workout, I should be directed to a separate page displaying:
-Detailed instructions
-Duration and equipment required
-Demo videos
-An option to "Like" the workout
-An option to "Add" the workout to my personalized workout regimen
+ - Detailed instructions
+ - Duration and equipment required
+ - Demo videos
+ - An option to "Like" the workout
+ - An option to "Add" the workout to my personalized workout regimen
 
 
 ## Implementation
