@@ -1,0 +1,17 @@
+@use "./typography" as *;
+@use "./variables" as *;
+@use "./mixins" as *;
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  margin-inline: 0;
+  overflow-x: hidden;
+}
+p {
+  margin-block: 0;
+}

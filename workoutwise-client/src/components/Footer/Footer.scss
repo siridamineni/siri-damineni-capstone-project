@@ -1,0 +1,9 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+.footer {
+  padding: 1rem 2rem;
+
+  &__content {
+    @include flexbox();
+  }
+}

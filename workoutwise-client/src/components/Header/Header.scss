@@ -1,0 +1,28 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+.header {
+  @include flexbox($justify-content: "space-between");
+  padding: 1rem 2rem;
+  background-color: $primary;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  &__nav {
+    width: 100vw;
+    @include flexbox($justify-content: space-between);
+  }
+  &__logo {
+    display: flex;
+    align-items: center;
+
+    &-img {
+      height: 40px;
+      margin-right: 2rem;
+    }
+  }
+  &__list {
+    @include flexbox();
+    list-style: none;
+  }
+  &__item > a {
+    text-decoration: none;
+  }
+}
