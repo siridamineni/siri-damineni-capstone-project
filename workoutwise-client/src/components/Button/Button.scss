@@ -1,0 +1,15 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+.button {
+  background-color: $primary;
+  border: none;
+  cursor: pointer;
+  @include flexbox($justify-content: center, $align-items: center);
+  @include text-style(
+    $color: $white,
+    $font-size: 0.75rem,
+    $line-height: 1.25rem,
+    $font-weight: 600,
+    $text-transform: uppercase
+  );
+}

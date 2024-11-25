@@ -3,7 +3,7 @@ function Footer() {
   return (
     <div className="footer">
       <p className="footer__content">
-        &copy; InStock Inc. All Rights Reserved.
+        &copy; WorkoutWise Inc. All Rights Reserved.
       </p>
     </div>
   );
