@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 
 export const getAllExcercises = async (_req, res) => {
   try {
-    const data = await knex("excercises");
+    const data = await knex("exercises");
     res.status(200).json(data);
   } catch (error) {
     console.error("Error retrieving Excercises:", error);
