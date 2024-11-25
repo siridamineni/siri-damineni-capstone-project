@@ -32,6 +32,19 @@
     border: 1px solid $primary;
     outline: none;
   }
+  &__error-block {
+    @include flexbox();
+  }
+  &__error-img {
+    height: 12px;
+    width: 12px;
+  }
+  &__input--error:focus {
+    border: 1px solid $error;
+  }
+  &__error {
+    @include text-style($color: $error);
+  }
   @include tablet {
     &__container {
       @include flexbox(

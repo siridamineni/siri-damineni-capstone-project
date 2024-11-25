@@ -10,10 +10,11 @@
     @include flexbox($flex-direction: column);
     width: 50vw;
     border-radius: 8px;
-    overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background-color: $white;
-    padding: 1rem;
+    height: calc(100% - 100px);
+    padding: 10px;
+    overflow: scroll;
   }
 }
 

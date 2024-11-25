@@ -1,5 +1,7 @@
 import "./App.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Dashboard from "./pages/Dashboard/Dashboard";
@@ -9,6 +11,7 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
+      <ToastContainer position="top-center" />
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
