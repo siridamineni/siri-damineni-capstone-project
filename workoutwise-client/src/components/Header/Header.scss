@@ -24,5 +24,6 @@
   }
   &__item > a {
     text-decoration: none;
+    @include text-style();
   }
 }

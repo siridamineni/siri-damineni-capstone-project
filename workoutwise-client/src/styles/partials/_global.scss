@@ -15,3 +15,14 @@ body {
 p {
   margin-block: 0;
 }
+
+h1 {
+  @include text-style(
+    $font-size: 1.75rem,
+    $line-height: 2.25rem,
+    $font-weight: 600
+  );
+  @include tablet {
+    @include text-style($font-size: 2rem, $line-height: 2.5rem);
+  }
+}

@@ -59,7 +59,8 @@
   border-radius: 4px;
 }
 
-@mixin video-controller-icons {
-  background-color: $black;
-  border-radius: 5px;
+@mixin wrapper {
+  @include flexbox();
+  width: 100vw;
+  height: calc(100vh - 120px);
 }

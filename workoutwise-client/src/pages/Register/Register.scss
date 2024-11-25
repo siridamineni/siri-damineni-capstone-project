@@ -1,0 +1,43 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.wrapper {
+  @include wrapper();
+}
+
+.register {
+  &__container {
+    @include flexbox($flex-direction: column);
+    width: 50vw;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: $white;
+    padding: 1rem;
+  }
+}
+
+.formfield {
+  width: 100%;
+  @include flexbox(
+    $flex-direction: column,
+    $gap: 0.5rem,
+    $align-items: flex-start
+  );
+  &__label {
+    @include text-style(
+      $color: $silver,
+      $font-weight: 600,
+      $text-transform: uppercase
+    );
+  }
+  &__radio-btn-container {
+    @include flexbox($flex-direction: row);
+  }
+  &__each-radio-btn-container {
+    @include flexbox($flex-direction: row);
+  }
+  &__each-radio-btn-label {
+    @include text-style();
+  }
+}
