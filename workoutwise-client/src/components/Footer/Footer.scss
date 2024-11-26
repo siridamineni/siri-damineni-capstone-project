@@ -2,9 +2,9 @@
 @use "../../styles/partials/variables" as *;
 .footer {
   padding: 1rem 2rem;
-
+  background-color: $primary;
   &__content {
-    @include flexbox();
+    @include flexbox($align-items: flex-end);
     @include text-style();
   }
 }

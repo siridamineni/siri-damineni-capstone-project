@@ -1,0 +1,9 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.main-wrapper {
+  @include flexbox($align-items: flex-start);
+}
+.wrapper {
+  @include wrapper($width: 80vw);
+}

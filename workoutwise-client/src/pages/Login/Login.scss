@@ -1,8 +1,8 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
 
-.wrapper {
-  @include wrapper();
+.login-wrapper {
+  @include wrapper($width: 100vw);
 }
 .login {
   &__container {

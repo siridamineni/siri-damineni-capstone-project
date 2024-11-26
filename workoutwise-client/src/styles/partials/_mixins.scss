@@ -59,8 +59,8 @@
   border-radius: 4px;
 }
 
-@mixin wrapper {
+@mixin wrapper($width: 100vw) {
   @include flexbox();
-  width: 100vw;
+  width: $width;
   height: calc(100vh - 120px);
 }

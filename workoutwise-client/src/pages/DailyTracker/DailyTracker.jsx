@@ -1,7 +1,6 @@
-import React from "react";
 import SideBar from "../../components/SideBar/SideBar";
-import "./Dashboard.scss";
-function Dashboard() {
+import "./DailyTracker.scss";
+function DailyTracker() {
   return (
     <main className="main-wrapper">
       <SideBar />
@@ -10,4 +9,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default DailyTracker;

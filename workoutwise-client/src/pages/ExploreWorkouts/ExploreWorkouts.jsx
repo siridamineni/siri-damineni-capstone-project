@@ -1,7 +1,6 @@
-import React from "react";
 import SideBar from "../../components/SideBar/SideBar";
-import "./Dashboard.scss";
-function Dashboard() {
+import "./ExploreWorkouts.scss";
+function ExploreWorkouts() {
   return (
     <main className="main-wrapper">
       <SideBar />
@@ -10,4 +9,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default ExploreWorkouts;
