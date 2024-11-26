@@ -1,10 +1,12 @@
 import "./Header.scss";
 import logo from "../../assets/images/image.png";
+import { TOKEN_NAME } from "../../shared/constants";
 function Header() {
+  const token = localStorage.getItem(TOKEN_NAME);
   return (
     <header className="header">
       <nav className="header__nav">
-        <a className="header__logo" href="/">
+        <a className="header__logo" href={token ? "/dashboard" : "/"}>
           <img src={logo} alt="logo" className="header__logo-img" />
         </a>
         <ul className="header__list">

@@ -74,7 +74,7 @@ function Register() {
       toast.success("You are Registered Successfully. Please Login");
       handleNavigateToLogin();
     } catch (error) {
-      toast.error(error);
+      toast.error(error.response.data.error);
     }
   };
   const handleSubmit = (e) => {
