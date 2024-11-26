@@ -1,9 +1,9 @@
-import SideBar from "../../components/SideBar/SideBar";
+import SideNav from "../../components/SideNav/SideNav";
 import "./DailyTracker.scss";
 function DailyTracker() {
   return (
     <main className="main-wrapper">
-      <SideBar />
+      <SideNav />
       <section className="wrapper"></section>
     </main>
   );

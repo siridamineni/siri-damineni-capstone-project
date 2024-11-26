@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
-import "./SideBar.scss";
-function SideBar() {
+import "./SideNav.scss";
+function SideNav() {
   const SidebarNavigationLinks = [
     {
       linkTo: "/dashboard",
@@ -40,4 +40,4 @@ function SideBar() {
   );
 }
 
-export default SideBar;
+export default SideNav;

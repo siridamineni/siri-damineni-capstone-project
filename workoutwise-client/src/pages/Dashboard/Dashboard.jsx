@@ -1,10 +1,10 @@
 import React from "react";
-import SideBar from "../../components/SideBar/SideBar";
+import SideNav from "../../components/SideNav/SideNav";
 import "./Dashboard.scss";
 function Dashboard() {
   return (
     <main className="main-wrapper">
-      <SideBar />
+      <SideNav />
       <section className="wrapper"></section>
     </main>
   );
