@@ -1,8 +1,11 @@
 import initKnex from "knex";
 import configuration from "../knexfile.js";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import "dotenv/config";
 const knex = initKnex(configuration);
 
+const { JWT_SECRET_KEY } = process.env;
 const createUser = async (req, res) => {
   const { firstname, lastname, email, gender, password } = req.body;
   if (!firstname || !lastname || !email || !gender || !password) {
@@ -34,8 +37,38 @@ const createUser = async (req, res) => {
     }
     res
       .status(500)
-      .json({ error: "Internal server error", details: error.message });
+      .json({ error: "Internal Server Error", details: error.message });
   }
 };
 
-export { createUser };
+const authenticate = async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const user = await knex("user_info")
+      .where({ email: email.toLowerCase() })
+      .first();
+    if (!user) {
+      return res.status(401).json({ message: "Authentication Failed" });
+    }
+    const match = await bcrypt.compare(password, user.password);
+    if (match) {
+      const base64EncodedSecret =
+        Buffer.from(JWT_SECRET_KEY).toString("base64");
+      const token = jwt.sign(
+        {
+          userId: user.id,
+          userName: user.firstname,
+        },
+        base64EncodedSecret,
+        { expiresIn: "10h" }
+      );
+      res.json({ token });
+    }
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "Internal Server Error", details: error.message });
+  }
+};
+
+export { createUser, authenticate };

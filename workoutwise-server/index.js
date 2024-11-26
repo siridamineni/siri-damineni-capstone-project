@@ -1,8 +1,6 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
-import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
 import excerciseRoutes from "./routes/excercise-routes.js";
 import authenticationRoutes from "./routes/authentication-routes.js";
 const app = express();
