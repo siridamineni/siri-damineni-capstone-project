@@ -58,6 +58,14 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/explore-workouts/:id"
+          element={
+            <ProtectedRoute>
+              <ExploreWorkouts />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
       <Footer />
     </BrowserRouter>

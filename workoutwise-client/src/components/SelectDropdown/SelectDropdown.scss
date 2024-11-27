@@ -1,0 +1,21 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.select {
+  @include flexbox(
+    $flex-direction: column,
+    $align-items: flex-start,
+    $justify-content: space-evenly
+  );
+  &__label {
+    @include text-style();
+  }
+  &__input {
+    @include input();
+    border: 1px solid $primary;
+    border-radius: 20px;
+  }
+  &__input:focus {
+    outline: none;
+  }
+}

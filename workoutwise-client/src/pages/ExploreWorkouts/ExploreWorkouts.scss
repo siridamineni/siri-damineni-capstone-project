@@ -7,3 +7,37 @@
 .wrapper {
   @include wrapper($width: 80vw);
 }
+
+.excercise {
+  &__container {
+    height: calc(100% - 50px);
+    width: calc(100% - 50px);
+    border-radius: 10px;
+    overflow-y: auto;
+    border: 2px solid $mercury;
+    padding: 10px;
+    background-color: $alabaster;
+  }
+  // &__container::-webkit-scrollbar {
+  //   width: 10px; /* Scrollbar width */
+  // }
+  // &__container::-webkit-scrollbar-thumb {
+  //   background: #888; /* Scrollbar thumb color */
+  //   border-radius: 5px; /* Rounded corners */
+  // }
+  // &__container::-webkit-scrollbar-thumb:hover {
+  //   background: #555; /* Hover effect */
+  // }
+  &__filter-container {
+    border: 1px solid $primary;
+    @include flexbox();
+    background-color: $white;
+    border-radius: 20px;
+    padding: 10px;
+  }
+  &__card-container {
+    @include flexbox($gap: 2rem);
+    padding: 10px;
+    flex-wrap: wrap;
+  }
+}

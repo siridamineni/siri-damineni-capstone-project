@@ -1,0 +1,22 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.excercise-card {
+  width: 300px;
+  background-color: $white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  &__img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  &__text {
+    @include text-style($font-weight: 700);
+  }
+  &__details {
+    @include flexbox($align-items: flex-start, $justify-content: space-between);
+    padding: 10px;
+  }
+}
