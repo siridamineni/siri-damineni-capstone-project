@@ -6,6 +6,7 @@ import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import ExploreWorkouts from "./pages/ExploreWorkouts/ExploreWorkouts";
+import WorkoutDetails from "./pages/WorkoutDetails/WorkoutDetails";
 import DailyTracker from "./pages/DailyTracker/DailyTracker";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
@@ -62,7 +63,7 @@ function App() {
           path="/explore-workouts/:id"
           element={
             <ProtectedRoute>
-              <ExploreWorkouts />
+              <WorkoutDetails />
             </ProtectedRoute>
           }
         />

@@ -1,14 +1,20 @@
 import React from "react";
 import "./ExcerciseCard.scss";
+import { useNavigate } from "react-router-dom";
 function ExcerciseCard({ thumbnailUrl, name, bodyRegion, equipment, id }) {
+  const navigate = useNavigate();
+  const handleRedirect = (id) => {
+    navigate(`/${id}`);
+  };
   return (
     <div className="excercise-card">
-      {/* <iframe width={280} height={150} src={thumbnailUrl}></iframe> */}
-      <img
-        className="excercise-card__img"
-        src={thumbnailUrl}
-        alt="excercise Image"
-      />
+      <div>
+        <img
+          className="excercise-card__img"
+          src={thumbnailUrl}
+          alt="excercise Image"
+        />
+      </div>
       <div className="excercise-card__details">
         <div>
           <p className="excercise-card__text">Excercise Name:</p>

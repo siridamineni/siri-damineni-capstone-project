@@ -4,9 +4,11 @@ import SideNav from "../../components/SideNav/SideNav";
 import SelectDropdown from "../../components/SelectDropdown/SelectDropdown";
 import "./ExploreWorkouts.scss";
 import ExcerciseCard from "../../components/ExcerciseCard/ExcerciseCard";
+import { useNavigate } from "react-router-dom";
 
 function ExploreWorkouts() {
   const baseUrl = import.meta.env.VITE_BASE_URL;
+  const navigate = useNavigate();
   const [category, setCategory] = useState("");
   const [intensity, setIntensity] = useState("");
   const [categoryOptions, setCategoryOptions] = useState([]);
@@ -29,6 +31,9 @@ function ExploreWorkouts() {
     setIntensityOptions(data.data);
   };
 
+  const handleRedirectToDetails = (id) => {
+    navigate(`/explore-workouts/${id}`);
+  };
   const getAllExcercises = async (selectedCategory, selectedIntensity) => {
     let data = [];
     if (selectedCategory && selectedIntensity) {
@@ -108,15 +113,16 @@ function ExploreWorkouts() {
           </div>
           <div className="excercise__card-container">
             {excerciseData?.map(
-              ({ id, name, bodyRegion, equipment, thumbnailUrl, videoUrl }) => {
+              ({ id, name, bodyRegion, equipment, thumbnailUrl }) => {
                 return (
-                  <ExcerciseCard
-                    key={id}
-                    thumbnailUrl={thumbnailUrl}
-                    name={name}
-                    bodyRegion={bodyRegion}
-                    equipment={equipment}
-                  />
+                  <div key={id} onClick={() => handleRedirectToDetails(id)}>
+                    <ExcerciseCard
+                      thumbnailUrl={thumbnailUrl}
+                      name={name}
+                      bodyRegion={bodyRegion}
+                      equipment={equipment}
+                    />
+                  </div>
                 );
               }
             )}
