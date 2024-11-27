@@ -26,4 +26,9 @@
     text-decoration: none;
     @include text-style();
   }
+  &__icon {
+    height: 2rem;
+    width: 2rem;
+    cursor: pointer;
+  }
 }

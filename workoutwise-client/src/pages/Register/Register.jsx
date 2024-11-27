@@ -91,7 +91,7 @@ function Register() {
     }
   };
   return (
-    <section className="wrapper">
+    <section className="register-wrapper">
       <section className="register__container">
         <div>
           <h1>Register Here</h1>
