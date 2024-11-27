@@ -116,7 +116,7 @@ export const getAllIntensityLevels = async (_req, res) => {
 export const getExcerciseById = async (req, res) => {
   const { id } = req.params;
   try {
-    const data = await knex("exercises").where({ id });
+    const data = await knex("exercises").where({ id }).first();
     res.json(data);
   } catch (err) {
     res.status(500).json({
