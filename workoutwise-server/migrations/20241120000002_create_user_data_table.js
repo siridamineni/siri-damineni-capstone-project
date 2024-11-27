@@ -6,7 +6,7 @@ export function up(knex) {
     table.integer("weight").notNullable(); // User's weight
     table.integer("bmi").notNullable(); // User's BMI
     table.integer("step_count").notNullable(); // User's step count
-    table.integer("exercise_id").unsigned().notNullable(); // Foreign key for exercises
+    table.integer("exercise_id").unsigned().nullable(); // Foreign key for exercises
     table.integer("rep_count").notNullable(); // Number of repetitions
 
     // Foreign Key Constraints
