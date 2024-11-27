@@ -2,7 +2,8 @@ import express from "express";
 import * as excerciseController from "../controllers/excercise-controller.js";
 const router = express.Router();
 
-router
-  .route("/excercises")
-  .get(excerciseController.getExcercisesByCategoryAndIntensity);
+router.route("/excercises").get(excerciseController.getAllExcercises);
 export default router;
+
+router.route("/categories").get(excerciseController.getAllCategories);
+router.route("/intensities").get(excerciseController.getAllIntensityLevels);
