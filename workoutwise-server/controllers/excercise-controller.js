@@ -66,9 +66,7 @@ export const getAllExcercises = async (req, res) => {
     } else if (intensity) {
       const excerciseData = await knex("exercises");
       const filterExcercisesByIntensity = excerciseData
-        .filter((item) => {
-          item.difficulty_level === intensity;
-        })
+        .filter((item) => item.difficulty_level === intensity)
         .slice(0, 10);
       return res.json(filterExcercisesByIntensity);
     } else {
@@ -106,7 +104,6 @@ export const getAllIntensityLevels = async (_req, res) => {
     const data = await knex("exercises")
       .distinct("difficulty_level")
       .pluck("difficulty_level");
-    console.log(data);
     const allIntensities = data.map((item) => ({ label: item, value: item }));
     res.json(allIntensities);
   } catch (err) {
