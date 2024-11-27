@@ -112,6 +112,18 @@ export const getAllIntensityLevels = async (_req, res) => {
     });
   }
 };
+
+export const getExcerciseById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const data = await knex("exercises").where({ id });
+    res.json(data);
+  } catch (err) {
+    res.status(500).json({
+      message: "An error occured while retrieving the excercise by Id",
+    });
+  }
+};
 // export const getExcerciseByCategory = async (req, res) => {
 //   const { category } = req.params;
 //   if (!category) {
