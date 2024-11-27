@@ -60,9 +60,7 @@ function ExploreWorkouts() {
 
   function getYouTubeThumbnail(videoUrl) {
     const videoId = getVideoIdFromUrl(videoUrl); // Function to extract video ID
-
-    const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
-
+    const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
     return thumbnailUrl;
   }
 
