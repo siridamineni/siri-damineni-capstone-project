@@ -2,8 +2,12 @@
 @use "../../styles/partials/variables" as *;
 
 .main-wrapper {
-  @include flexbox($align-items: flex-start);
+  @include flexbox($align-items: flex-start, $justify-content: flex-start);
 }
 .wrapper {
   @include wrapper($width: 80vw);
+}
+
+.excercise__details {
+  @include flexbox();
 }

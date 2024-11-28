@@ -23,6 +23,12 @@ function WorkoutDetails() {
       <SideNav />
       <section className="wrapper">
         <VideoPlayer url={excerciseData?.video_url || ""} />
+        <div className="excercise__details">
+          <div className="excercise__details-data-item">
+            <p className="excercise__details-data"></p>
+            <p className="excercise__details-data"></p>
+          </div>
+        </div>
       </section>
     </main>
   );
