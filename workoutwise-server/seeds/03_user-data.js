@@ -4,22 +4,18 @@ export async function seed(knex) {
     {
       id: 1,
       user_id: 1,
-      height: 175,
-      weight: 70,
+      height: 7.5,
+      weight: 60.8,
       bmi: 23,
       step_count: 5000,
-      exercise_id: "1",
-      rep_count: 20,
     },
     {
       id: 2,
       user_id: 2,
-      height: 165,
-      weight: 60,
+      height: 5.6,
+      weight: 89.45,
       bmi: 22,
       step_count: 8000,
-      exercise_id: "2",
-      rep_count: 30,
     },
   ]);
 }

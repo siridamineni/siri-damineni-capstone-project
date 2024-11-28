@@ -2,12 +2,12 @@ export function up(knex) {
   return knex.schema.createTable("user_data", (table) => {
     table.increments("id").primary(); // Auto-incrementing primary key
     table.integer("user_id").unsigned().notNullable(); // Foreign key for user_info
-    table.integer("height").notNullable(); // User's height
-    table.integer("weight").notNullable(); // User's weight
-    table.integer("bmi").notNullable(); // User's BMI
+    table.float("height").notNullable(); // User's height
+    table.float("weight").notNullable(); // User's weight
+    table.float("bmi").notNullable(); // User's BMI
     table.integer("step_count").notNullable(); // User's step count
     table.integer("exercise_id").unsigned().nullable(); // Foreign key for exercises
-    table.integer("rep_count").notNullable(); // Number of repetitions
+    table.integer("rep_count").nullable(); // Number of repetitions
 
     // Foreign Key Constraints
     table

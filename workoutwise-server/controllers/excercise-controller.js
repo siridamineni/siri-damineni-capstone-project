@@ -1,7 +1,6 @@
 import initKnex from "knex";
 import configuration from "../knexfile.js";
 const knex = initKnex(configuration);
-import { v4 as uuidv4 } from "uuid";
 import fs from "fs";
 
 const excercisesGroupedByCategories = async () => {
