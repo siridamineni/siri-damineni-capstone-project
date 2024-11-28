@@ -60,16 +60,16 @@ export const getAllExcercises = async (req, res) => {
       const parsedCategories = JSON.parse(categories);
       const result = parsedCategories
         .find((item) => item.category === category)
-        .excercises.slice(0, 10);
+        .excercises.slice(0, 20);
       return res.json(result);
     } else if (intensity) {
       const excerciseData = await knex("exercises");
       const filterExcercisesByIntensity = excerciseData
         .filter((item) => item.difficulty_level === intensity)
-        .slice(0, 10);
+        .slice(0, 20);
       return res.json(filterExcercisesByIntensity);
     } else {
-      const data = await knex("exercises").limit(10);
+      const data = await knex("exercises").limit(20);
       res.status(200).json(data);
     }
   } catch (err) {
