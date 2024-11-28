@@ -62,7 +62,13 @@ const authenticate = async (req, res) => {
         base64EncodedSecret,
         { expiresIn: "10h" }
       );
-      res.json({ token });
+      res.json({
+        token,
+        user_info: {
+          userId: user.id,
+          name: `${user.firstname} ${user.lastname}`,
+        },
+      });
     }
   } catch (error) {
     res
