@@ -123,24 +123,3 @@ export const getExcerciseById = async (req, res) => {
     });
   }
 };
-// export const getExcerciseByCategory = async (req, res) => {
-//   const { category } = req.params;
-//   if (!category) {
-//     res.status(400).json({ error: "Please provide Category" });
-//   }
-//   try {
-//     const categories = fs.readFileSync(
-//       "./data/excercisesByCategories.json",
-//       "utf-8"
-//     );
-//     const parsedCategories = JSON.parse(categories);
-//     const ExcercisesByCategory = parsedCategories.find(
-//       (excercises) => excercises.category === category
-//     );
-//     res.json(ExcercisesByCategory);
-//   } catch (err) {
-//     res.status(500).json({
-//       message: "An error occured while retrieving the Excercises by Category",
-//     });
-//   }
-// };
