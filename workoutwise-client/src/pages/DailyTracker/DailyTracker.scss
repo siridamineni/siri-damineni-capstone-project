@@ -7,3 +7,11 @@
 .wrapper {
   @include wrapper($width: 80vw);
 }
+.form {
+  &__container {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: $white;
+    border-radius: 8px;
+    padding: 2rem;
+  }
+}

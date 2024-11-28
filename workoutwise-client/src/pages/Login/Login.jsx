@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import FormField from "../../components/FormField/FormField";
 import Button from "../../components/Button/Button";
-import { TOKEN_NAME } from "../../shared/constants";
+import { TOKEN_NAME, USER_ID } from "../../shared/constants";
 
 function Login() {
   const navigate = useNavigate();
@@ -45,8 +45,9 @@ function Login() {
   const LoginUser = async (data) => {
     try {
       const response = await axios.post(`${baseUrl}/authenticate`, data);
-      const { token } = response.data;
+      const { token, user_info } = response.data;
       localStorage.setItem(TOKEN_NAME, token);
+      localStorage.setItem(USER_ID, user_info.userId);
       navigate(`/dashboard`);
     } catch (error) {
       toast.error(error.response.data.error);

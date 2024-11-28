@@ -3,6 +3,7 @@
 .footer {
   padding: 1rem 2rem;
   background-color: $primary;
+  box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.2);
   &__content {
     @include flexbox($align-items: flex-end);
     @include text-style();
