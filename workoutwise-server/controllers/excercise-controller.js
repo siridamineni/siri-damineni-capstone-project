@@ -79,6 +79,26 @@ export const getAllExcercises = async (req, res) => {
   }
 };
 
+export const getAllCategoryExercises = async (_req, res) => {
+  try {
+    const categories = fs.readFileSync(
+      "./data/excercisesByCategories.json",
+      "utf-8"
+    );
+    const parsedCategories = JSON.parse(categories);
+    const RecordsOfExercisesForAllCategories = parsedCategories.map((item) => ({
+      category: item.category,
+      exercises: item.excercises.slice(0, 20),
+    }));
+    res.json(RecordsOfExercisesForAllCategories);
+  } catch (err) {
+    res
+      .status(500)
+      .json({
+        message: "An error occured while retrieving all category exercises",
+      });
+  }
+};
 export const getAllCategories = async (_req, res) => {
   try {
     const categories = fs.readFileSync(

@@ -24,12 +24,12 @@ const calculateBmi = (height, weight) => {
 };
 
 const getUserDataByuserId = async (req, res) => {
-  const { id } = req.params;
-  if (!id) {
+  const { userId } = req.params;
+  if (!userId) {
     return res.status(400).json({ error: "User Id is required" });
   }
   try {
-    const result = await knex("user_data").where({ user_id: id }).first();
+    const result = await knex("user_data").where({ user_id: userId }).first();
     res.status(200).json(result);
   } catch (error) {
     res
@@ -38,24 +38,15 @@ const getUserDataByuserId = async (req, res) => {
   }
 };
 const createUserData = async (req, res) => {
-  const {
-    user_id,
-    height,
-    weight,
-    step_count,
-    date,
-    category,
-    exercise_name,
-    rep_count,
-  } = req.body;
+  const { user_id, height, weight, step_count, date, exercise_id, rep_count } =
+    req.body;
   if (
     !user_id ||
     !height ||
     !weight ||
     !step_count ||
     !date ||
-    !exercise_name ||
-    !category ||
+    !exercise_id ||
     !rep_count
   ) {
     return res
@@ -63,12 +54,6 @@ const createUserData = async (req, res) => {
       .json({ error: "All Required Fields must be filled" });
   }
   try {
-    const exerciseData = await knex("exercises")
-      .where({
-        category,
-        exercise_name,
-      })
-      .first();
     const data = {
       user_id,
       height: parseFloat(height.toFixed(2)),
@@ -76,7 +61,7 @@ const createUserData = async (req, res) => {
       bmi: calculateBmi(height, weight).bmi,
       step_count,
       bmi_status: calculateBmi(height, weight).category,
-      exercise_id: exerciseData.id,
+      exercise_id: exercise_id,
       date: date,
       rep_count,
     };
@@ -91,4 +76,101 @@ const createUserData = async (req, res) => {
   }
 };
 
-export { createUserData, getUserDataByuserId };
+const getAllUserDataByUserId = async (req, res) => {
+  const { id } = req.params;
+  if (!id) {
+    return res.status(400).json({ error: "User Id is required" });
+  }
+  try {
+    const result = await knex("user_data")
+      .leftJoin("exercises", "user_data.exercise_id", "exercises.id")
+      .select(
+        "user_data.id",
+        "user_data.rep_count",
+        "exercises.exercise_name",
+        "exercises.category",
+        "exercises.body_region"
+      )
+      .where({ "user_data.user_id": id });
+    res.status(200).json(result);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "Internal Server Error", details: error.message });
+  }
+};
+
+const deleteUserDataById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    await knex("user_data").where({ id: id }).del();
+    res.status(200).json({ message: "User Data is deleted Successfully" });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "Internal Server Error", details: error.message });
+  }
+};
+
+const getUserDataById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const data = await knex("user_data")
+      .leftJoin("exercises", "user_data.exercise_id", "exercises.id")
+      .select("user_data.*", "exercises.category", "exercises.exercise_name")
+      .where({ "user_data.id": id })
+      .first();
+    res.status(200).json(data);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "Internal Server Error", details: error.message });
+  }
+};
+
+const updateUserDataById = async (req, res) => {
+  const { id } = req.params;
+  const { date, user_id, height, weight, step_count, exercise_id, rep_count } =
+    req.body;
+  if (
+    !date ||
+    !user_id ||
+    !height ||
+    !weight ||
+    !step_count ||
+    !exercise_id ||
+    !rep_count
+  ) {
+    res.status(400).json({ error: "All Required Fields must be filled" });
+  }
+  try {
+    await knex("user_data")
+      .where({ id: id })
+      .update({
+        date,
+        user_id,
+        height,
+        weight,
+        step_count,
+        exercise_id,
+        rep_count,
+        bmi: calculateBmi(height, weight).bmi,
+        bmi_status: calculateBmi(height, weight).category,
+      });
+    const UpdatedData = await knex("user_data").where({ id: id }).first();
+    res.status(200).json({ UpdatedData });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "Internal Server Error", details: error.message });
+  }
+};
+
+export {
+  createUserData,
+  getUserDataByuserId,
+  getAllUserDataByUserId,
+  deleteUserDataById,
+  getUserDataById,
+  updateUserDataById,
+};
