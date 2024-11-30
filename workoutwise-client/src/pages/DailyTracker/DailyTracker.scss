@@ -16,3 +16,38 @@
     padding: 2rem;
   }
 }
+.formfield__date {
+  @include flexbox(
+    $flex-direction: column,
+    $gap: 0.5rem,
+    $align-items: flex-start
+  );
+  .MuiInputBase-root {
+    background-color: $alabaster; // Light gray background
+    border-radius: 8px; // Rounded corners
+    @include text-style($line-height: 1.2, $text-align: left);
+    padding: 0; // Adjust padding
+  }
+
+  .MuiInputBase-input-MuiOutlinedInput-input {
+    height: 0px;
+  }
+  // Customize the outline for the input field
+  .MuiOutlinedInput-root {
+    &.Mui-focused .MuiOutlinedInput-notchedOutline {
+      border-color: $primary; // Blue outline
+    }
+
+    .MuiOutlinedInput-notchedOutline {
+      border: 1px solid $mercury;
+    }
+  }
+}
+
+.formfield__date-label {
+  @include text-style(
+    $color: $silver,
+    $font-weight: 600,
+    $text-transform: uppercase
+  );
+}

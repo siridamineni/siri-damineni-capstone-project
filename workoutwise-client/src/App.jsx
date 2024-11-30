@@ -52,6 +52,14 @@ function App() {
           }
         />
         <Route
+          path="/daily-tracker/:id"
+          element={
+            <ProtectedRoute>
+              <DailyTracker />
+            </ProtectedRoute>
+          }
+        />
+        <Route
           path="/explore-workouts"
           element={
             <ProtectedRoute>
