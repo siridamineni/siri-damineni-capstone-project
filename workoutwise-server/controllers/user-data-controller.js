@@ -23,6 +23,20 @@ const calculateBmi = (height, weight) => {
   return { bmi, category };
 };
 
+const getUserDataByuserId = async (req, res) => {
+  const { id } = req.params;
+  if (!id) {
+    return res.status(400).json({ error: "User Id is required" });
+  }
+  try {
+    const result = await knex("user_data").where({ user_id: id }).first();
+    res.status(200).json(result);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "Internal Server Error", details: error.message });
+  }
+};
 const createUserData = async (req, res) => {
   const { user_id, height, weight, step_count } = req.body;
   if (!user_id || !height || !weight || !step_count) {
@@ -57,4 +71,4 @@ const createUserData = async (req, res) => {
   }
 };
 
-export { createUserData };
+export { createUserData, getUserDataByuserId };
