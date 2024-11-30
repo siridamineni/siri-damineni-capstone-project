@@ -38,13 +38,37 @@ const getUserDataByuserId = async (req, res) => {
   }
 };
 const createUserData = async (req, res) => {
-  const { user_id, height, weight, step_count } = req.body;
-  if (!user_id || !height || !weight || !step_count) {
+  const {
+    user_id,
+    height,
+    weight,
+    step_count,
+    date,
+    category,
+    exercise_name,
+    rep_count,
+  } = req.body;
+  if (
+    !user_id ||
+    !height ||
+    !weight ||
+    !step_count ||
+    !date ||
+    !exercise_name ||
+    !category ||
+    !rep_count
+  ) {
     return res
       .status(400)
       .json({ error: "All Required Fields must be filled" });
   }
   try {
+    const exerciseData = await knex("exercises")
+      .where({
+        category,
+        exercise_name,
+      })
+      .first();
     const data = {
       user_id,
       height: parseFloat(height.toFixed(2)),
@@ -52,15 +76,11 @@ const createUserData = async (req, res) => {
       bmi: calculateBmi(height, weight).bmi,
       step_count,
       bmi_status: calculateBmi(height, weight).category,
+      exercise_id: exerciseData.id,
+      date: date,
+      rep_count,
     };
-    const result = await knex("user_data").insert({
-      user_id: data.user_id,
-      height: data.height,
-      weight: data.weight,
-      bmi: data.bmi,
-      step_count: data.step_count,
-      bmi_status: data.bmi_status,
-    });
+    const result = await knex("user_data").insert({ ...data });
     const newUser = await knex("user_info").where({ id: result[0] }).first();
     // Send a success response
     res.status(201).json(newUser);
