@@ -8,6 +8,7 @@ export function up(knex) {
     table.integer("step_count").notNullable(); // User's step count
     table.integer("exercise_id").unsigned().nullable(); // Foreign key for exercises
     table.integer("rep_count").nullable(); // Number of repetitions
+    table.date("date").defaultTo("2024-11-30");
 
     // Foreign Key Constraints
     table

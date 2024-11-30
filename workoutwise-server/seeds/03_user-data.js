@@ -8,6 +8,7 @@ export async function seed(knex) {
       weight: 60.8,
       bmi: 23,
       step_count: 5000,
+      date: "2024-11-28 18:45:41",
     },
     {
       id: 2,
@@ -16,6 +17,7 @@ export async function seed(knex) {
       weight: 89.45,
       bmi: 22,
       step_count: 8000,
+      date: "2024-11-28 18:45:41",
     },
   ]);
 }
