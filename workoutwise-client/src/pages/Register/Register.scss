@@ -3,6 +3,7 @@
 
 .register-wrapper {
   @include wrapper();
+  @include flexbox();
   $width: 100vw;
 }
 

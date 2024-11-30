@@ -60,7 +60,6 @@
 }
 
 @mixin wrapper($width: 100vw) {
-  @include flexbox();
   width: $width;
   height: calc(100vh - 120px);
 }

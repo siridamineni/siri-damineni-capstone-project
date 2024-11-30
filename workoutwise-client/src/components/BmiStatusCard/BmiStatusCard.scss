@@ -1,0 +1,72 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.bmi-card {
+  @include flexbox();
+  min-width: 230px;
+  border-radius: 8px;
+  border: 1px solid $mercury;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  height: 230px;
+  position: relative;
+  margin: 10px;
+  &__circle {
+    position: absolute;
+    top: 20px;
+    min-width: 160px;
+    border-radius: 180px;
+    border: 8px solid $dark-black;
+    height: 160px;
+    padding: 20px;
+    @include flexbox(
+      $flex-direction: column,
+      $align-items: center,
+      $justify-content: center
+    );
+  }
+  &__details {
+    @include flexbox(
+      $flex-direction: column,
+      $align-items: center,
+      $justify-content: center,
+      $gap: 0
+    );
+  }
+  &__value {
+    @include text-style(
+      $color: $dark-black,
+      $font-size: 1.875rem,
+      $font-weight: 700
+    );
+    padding: 1rem;
+    &--under-weight {
+      @include text-style(
+        $color: $under-weight-text,
+        $font-size: 1.875rem,
+        $font-weight: 700
+      );
+    }
+  }
+  &__title {
+    @include text-style();
+    &--under-weight {
+      @include text-style($color: $under-weight-text);
+    }
+  }
+  &__status-block {
+    position: absolute;
+    bottom: 0;
+    bottom: 20px;
+  }
+  &__status {
+    @include text-style($font-weight: 600);
+    &--under-weight {
+      @include text-style($color: $under-weight-text, $font-weight: 600);
+    }
+  }
+}
+
+.bmi-card--under-weight {
+  background-color: $under-weight-bg;
+}

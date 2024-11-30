@@ -16,18 +16,25 @@ function Header() {
         <a className="header__logo" href={token ? "/dashboard" : "/"}>
           <img src={logo} alt="logo" className="header__logo-img" />
         </a>
-        <ul className="header__list">
-          <li className="header__item">
-            <a>About Us</a>
-          </li>
-          <li className="header__item">
-            <a>Blog</a>
-          </li>
-          <li className="header__item">
-            <a>Contact Us</a>
-          </li>
-        </ul>
+        {!token && (
+          <ul className="header__list">
+            <li className="header__item">
+              <a>About Us</a>
+            </li>
+            <li className="header__item">
+              <a>Blog</a>
+            </li>
+            <li className="header__item">
+              <a>Contact Us</a>
+            </li>
+          </ul>
+        )}
       </nav>
+      {token && (
+        <div className="header__greetings">
+          <p>Hello Siri!</p>
+        </div>
+      )}
       {token && (
         <div onClick={handleLogout}>
           <img className="header__icon" src={logout} alt="logout icon" />

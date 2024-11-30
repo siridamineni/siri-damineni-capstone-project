@@ -6,6 +6,7 @@
 }
 .wrapper {
   @include wrapper($width: 80vw);
+  @include flexbox();
 }
 .form {
   &__container {

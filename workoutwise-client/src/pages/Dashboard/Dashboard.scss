@@ -4,6 +4,8 @@
 .main-wrapper {
   @include flexbox($align-items: flex-start);
 }
-.wrapper {
+.dashboard-wrapper {
   @include wrapper($width: 80vw);
+  @include flexbox($align-items: flex-start, $justify-content: flex-start);
+  margin: 0px;
 }

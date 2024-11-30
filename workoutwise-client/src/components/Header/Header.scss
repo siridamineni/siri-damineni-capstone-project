@@ -1,12 +1,11 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
 .header {
-  @include flexbox($justify-content: "space-between");
+  @include flexbox($justify-content: space-between);
   padding: 1rem 2rem;
   background-color: $primary;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   &__nav {
-    width: 100vw;
     @include flexbox($justify-content: space-between);
   }
   &__logo {
@@ -30,5 +29,10 @@
     height: 2rem;
     width: 2rem;
     cursor: pointer;
+  }
+  &__greetings {
+    @include text-style($font-size: 1.3rem);
+    text-wrap: nowrap;
+    @include flexbox();
   }
 }

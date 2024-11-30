@@ -6,27 +6,51 @@ import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
 import axios from "axios";
 function WorkoutDetails() {
   const params = useParams();
-  const [excerciseData, setExcerciseData] = useState({});
+  const [exerciseData, setExerciseData] = useState({});
   const baseUrl = import.meta.env.VITE_BASE_URL;
   const { id } = params;
 
-  const getExcerciseData = async (excerciseId) => {
-    const data = await axios(`${baseUrl}/excercises/${excerciseId}`);
-    setExcerciseData(data.data);
+  const getExerciseData = async (exerciseId) => {
+    const data = await axios(`${baseUrl}/excercises/${exerciseId}`);
+    setExerciseData(data.data);
+  };
+
+  const getDetailsInKeyValuePairs = () => {
+    return [
+      { name: "Name", value: exerciseData.exercise_name },
+      { name: "Category", value: exerciseData.category },
+      { name: "Difficulty Level", value: exerciseData.difficulty_level },
+      { name: "Equipment", value: exerciseData.equipment },
+      { name: "Body Region", value: exerciseData.body_region },
+      {
+        name: "Continous Alternating Arm",
+        value: exerciseData.continuous_alternating_arms,
+      },
+      { name: "Foot Elevation", value: exerciseData.foot_elevation },
+      { name: "grip", value: exerciseData.grip },
+      { name: "Prime Move Muscle", value: exerciseData.prime_move_muscle },
+      { name: "Target Muscle Group", value: exerciseData.target_muscle_group },
+    ];
   };
   useEffect(() => {
-    getExcerciseData(id);
+    getExerciseData(id);
   }, [id]);
-
+  console.log(exerciseData);
   return (
     <main className="main-wrapper">
       <SideNav />
-      <section className="wrapper">
-        <VideoPlayer url={excerciseData?.video_url || ""} />
-        <div className="excercise__details">
-          <div className="excercise__details-data-item">
-            <p className="excercise__details-data"></p>
-            <p className="excercise__details-data"></p>
+      <section className="exercise-details">
+        <VideoPlayer url={exerciseData?.video_url || ""} />
+        <div className="exercise-details__info">
+          <h3 className="exercise-details__heading">Exercise Details</h3>
+          <div className="exercise-details__list">
+            {getDetailsInKeyValuePairs().map(({ name, value }, index) => (
+              <div className="exercise-details__item" key={index}>
+                <span className="exercise-details__item-name">{name}</span>
+                <span className="exercise-details__item-seperator">:</span>
+                <span className="exercise-details__item-data">{value}</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>

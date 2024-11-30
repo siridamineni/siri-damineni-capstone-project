@@ -3,6 +3,7 @@
 
 .login-wrapper {
   @include wrapper($width: 100vw);
+  @include flexbox();
 }
 .login {
   &__container {
