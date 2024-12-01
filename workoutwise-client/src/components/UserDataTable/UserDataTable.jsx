@@ -1,80 +1,59 @@
 import React from "react";
-import { styled } from "@mui/material/styles";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell, { tableCellClasses } from "@mui/material/TableCell";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import TableContainer from "@mui/material/TableContainer";
+import "./UserDataTable.scss";
 import { IconButton } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 function UserDataTable({ rows, columns, handleDelete, handleEdit }) {
-  const StyledTableCell = styled(TableCell)(({ theme }) => ({
-    [`&.${tableCellClasses.head}`]: {
-      backgroundColor: theme.palette.common.black,
-      color: theme.palette.common.white,
-    },
-    [`&.${tableCellClasses.body}`]: {
-      fontSize: 14,
-    },
-  }));
-  const StyledTableRow = styled(TableRow)(({ theme }) => ({
-    "&:nth-of-type(odd)": {
-      backgroundColor: theme.palette.action.hover,
-    },
-    // hide last border
-    "&:last-child td, &:last-child th": {
-      border: 0,
-    },
-  }));
-
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 600 }} aria-label="customized table">
-        <TableHead>
-          <TableRow>
-            {rows?.map((item, index) => {
-              return (
-                <StyledTableCell align="left" key={index}>
-                  {item}
-                </StyledTableCell>
-              );
-            })}
-            <StyledTableCell align="center"></StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {columns?.map((item, id) => (
-            <StyledTableRow key={id}>
-              <StyledTableCell align="left">{item.id}</StyledTableCell>
-              <StyledTableCell align="left">
-                {item.excerciseName}
-              </StyledTableCell>
-              <StyledTableCell align="left">{item.category}</StyledTableCell>
-              <StyledTableCell align="left">{item.bodyRegion}</StyledTableCell>
-              <StyledTableCell align="left">{item.repeatCount}</StyledTableCell>
-              <StyledTableCell align="center">
-                <IconButton
-                  aria-label="home"
-                  color="primary"
-                  onClick={() => handleEdit(item.id)}>
-                  <EditIcon />
-                </IconButton>
-                <IconButton
-                  aria-label="home"
-                  color="primary"
-                  onClick={() => handleDelete(item.id)}>
-                  <DeleteIcon />
-                </IconButton>
-              </StyledTableCell>
-            </StyledTableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <ul className="user-data__list">
+      <li className="user-data__list-header">
+        {rows?.map((item, index) => (
+          <div className="user-data__cell" key={index}>
+            <h4 className="user-data__heading">{item}</h4>
+          </div>
+        ))}
+        <div className="user-data__cell"></div>
+        <div className="user-data__cell"></div>
+      </li>
+      <div className="columns__container">
+        {columns?.map((item, index) => (
+          <li className="user-data__list-body" key={index}>
+            <div className="user-data__cell">
+              <h4 className="user-data__value">{item.id}</h4>
+            </div>
+            <div className="user-data__cell">
+              <h4 className="user-data__value">{item.excerciseName}</h4>
+            </div>
+            <div className="user-data__cell">
+              <h4 className="user-data__value">{item.category}</h4>
+            </div>
+            <div className="user-data__cell">
+              <h4 className="user-data__value">{item.bodyRegion}</h4>
+            </div>
+            <div className="user-data__cell">
+              <h4 className="user-data__value">{item.repeatCount}</h4>
+            </div>
+            <div className="user-data__cell">
+              <IconButton
+                aria-label="home"
+                color="primary"
+                onClick={() => handleEdit(item.id)}>
+                <EditIcon sx={{ fontSize: "20px" }} />
+              </IconButton>
+            </div>
+            <div className="user-data__cell">
+              <IconButton
+                aria-label="home"
+                color="primary"
+                onClick={() => handleDelete(item.id)}>
+                <DeleteIcon sx={{ fontSize: "20px" }} />
+              </IconButton>
+            </div>
+          </li>
+        ))}
+      </div>
+    </ul>
   );
 }
 

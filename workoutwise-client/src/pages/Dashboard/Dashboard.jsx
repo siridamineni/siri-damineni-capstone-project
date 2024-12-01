@@ -7,12 +7,14 @@ import axios from "axios";
 import { USER_ID } from "../../shared/constants";
 import "./Dashboard.scss";
 import { toast } from "react-toastify";
+import ExercisePieChart from "../../components/PieChart/ExercisePieChart";
 function Dashboard() {
   const baseUrl = import.meta.env.VITE_BASE_URL;
   const navigate = useNavigate();
   const [userData, setUserData] = useState({});
   const [userTableData, setUserTableData] = useState([]);
   const [isDeleted, setIsDeleted] = useState(false);
+  const [pieChartData, setPieChartData] = useState([]);
   const userId = localStorage.getItem(USER_ID);
 
   const getUserData = async (id) => {
@@ -49,6 +51,20 @@ function Dashboard() {
     }
   };
 
+  const getExerciseCountByBodyRegion = async (id) => {
+    try {
+      const result = await axios.get(
+        `${baseUrl}/ex-count-by-body-region/${id}`
+      );
+      const data = result?.data.map((item) => ({
+        name: item.body_region,
+        value: item.exercise_count,
+      }));
+      setPieChartData(data);
+    } catch (error) {
+      toast.error(error.response.data.error);
+    }
+  };
   const deleteUserDataById = async (id) => {
     try {
       const result = await axios.delete(`${baseUrl}/user-details/${id}`);
@@ -71,14 +87,21 @@ function Dashboard() {
     getAllUserDataById(userId);
   }, [userId, isDeleted]);
 
+  useEffect(() => {
+    getExerciseCountByBodyRegion(userId);
+  }, [userId]);
+
   return (
     <main className="main-wrapper">
       <SideNav />
       <section className="dashboard-wrapper">
-        <BmiStatusCard
-          bmiValue={userData?.bmi}
-          bmiStatus={userData?.bmi_status}
-        />
+        <div className="stats__container">
+          <BmiStatusCard
+            bmiValue={userData?.bmi}
+            bmiStatus={userData?.bmi_status}
+          />
+          <ExercisePieChart data={pieChartData} />
+        </div>
         <UserDataTable
           rows={userTableData.rows}
           columns={userTableData.columns}

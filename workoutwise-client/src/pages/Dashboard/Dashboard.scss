@@ -3,6 +3,7 @@
 
 .main-wrapper {
   @include flexbox($align-items: flex-start);
+  overflow-y: scroll;
 }
 .dashboard-wrapper {
   @include wrapper($width: 80vw);
@@ -12,4 +13,8 @@
     $justify-content: flex-start
   );
   margin: 0px;
+}
+
+.stats__container {
+  @include flexbox();
 }
