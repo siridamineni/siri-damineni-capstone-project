@@ -9,4 +9,5 @@ router.route("/intensities").get(excerciseController.getAllIntensityLevels);
 router
   .route("/all-category-exercises")
   .get(excerciseController.getAllCategoryExercises);
+
 export default router;

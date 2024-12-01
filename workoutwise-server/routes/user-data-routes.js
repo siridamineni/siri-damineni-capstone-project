@@ -12,4 +12,8 @@ router
 router
   .route("/all-user-data/:id")
   .get(userDataController.getAllUserDataByUserId);
+router
+  .route("/ex-count-by-body-region/:id")
+  .get(userDataController.getExercisePerformedCountByBodyRegion);
+
 export default router;

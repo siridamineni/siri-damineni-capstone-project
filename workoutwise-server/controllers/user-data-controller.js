@@ -141,7 +141,9 @@ const updateUserDataById = async (req, res) => {
     !exercise_id ||
     !rep_count
   ) {
-    res.status(400).json({ error: "All Required Fields must be filled" });
+    return res
+      .status(400)
+      .json({ error: "All Required Fields must be filled" });
   }
   try {
     await knex("user_data")
@@ -166,6 +168,23 @@ const updateUserDataById = async (req, res) => {
   }
 };
 
+const getExercisePerformedCountByBodyRegion = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const result = await knex("user_data")
+      .join("exercises", "user_data.exercise_id", "=", "exercises.id")
+      .where("user_data.user_id", id)
+      .groupBy("exercises.body_region")
+      .select("exercises.body_region")
+      .count("user_data.exercise_id as exercise_count");
+    res.status(200).json(result);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "Internal Server Error", details: error.message });
+  }
+};
+
 export {
   createUserData,
   getUserDataByuserId,
@@ -173,4 +192,5 @@ export {
   deleteUserDataById,
   getUserDataById,
   updateUserDataById,
+  getExercisePerformedCountByBodyRegion,
 };
