@@ -89,6 +89,7 @@ const getAllUserDataByUserId = async (req, res) => {
       .leftJoin("exercises", "user_data.exercise_id", "exercises.id")
       .select(
         "user_data.id",
+        "user_data.date",
         "user_data.rep_count",
         "exercises.exercise_name",
         "exercises.category",
