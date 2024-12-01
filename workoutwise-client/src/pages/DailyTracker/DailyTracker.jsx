@@ -195,6 +195,7 @@ function DailyTracker() {
                 Exercise Category
               </label>
               <Select
+                displayEmpty
                 sx={{
                   backgroundColor: "#fafafa", // Background color
                   borderRadius: "4px", // Border radius
@@ -212,8 +213,11 @@ function DailyTracker() {
                   },
                 }}
                 name="category"
-                value={dailyTrackerData.category}
+                value={dailyTrackerData.category || ""}
                 onChange={handleChange}>
+                <MenuItem value="" disabled>
+                  Select the category Option
+                </MenuItem>
                 {categoryOptions.map(({ label, value }, index) => {
                   return (
                     <MenuItem
@@ -234,6 +238,7 @@ function DailyTracker() {
               <FormControl className="formfield__select">
                 <label className="formfield__select-label">Exercise Name</label>
                 <Select
+                  displayEmpty
                   sx={{
                     backgroundColor: "#fafafa", // Background color
                     borderRadius: "4px", // Border radius
@@ -251,8 +256,11 @@ function DailyTracker() {
                     },
                   }}
                   name="exerciseName"
-                  value={dailyTrackerData.exerciseName}
+                  value={dailyTrackerData.exerciseName || ""}
                   onChange={handleChange}>
+                  <MenuItem value="" disabled>
+                    Select the exercise performed in the Options
+                  </MenuItem>
                   {exerciseData
                     ?.find(
                       (item) => item.category === dailyTrackerData.category

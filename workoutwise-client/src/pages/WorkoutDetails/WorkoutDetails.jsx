@@ -17,7 +17,6 @@ function WorkoutDetails() {
 
   const getDetailsInKeyValuePairs = () => {
     return [
-      { name: "Name", value: exerciseData.exercise_name },
       { name: "Category", value: exerciseData.category },
       { name: "Difficulty Level", value: exerciseData.difficulty_level },
       { name: "Equipment", value: exerciseData.equipment },
@@ -40,17 +39,22 @@ function WorkoutDetails() {
     <main className="main-wrapper">
       <SideNav />
       <section className="exercise-details">
-        <VideoPlayer url={exerciseData?.video_url || ""} />
-        <div className="exercise-details__info">
-          <h3 className="exercise-details__heading">Exercise Details</h3>
-          <div className="exercise-details__list">
-            {getDetailsInKeyValuePairs().map(({ name, value }, index) => (
-              <div className="exercise-details__item" key={index}>
-                <span className="exercise-details__item-name">{name}</span>
-                <span className="exercise-details__item-seperator">:</span>
-                <span className="exercise-details__item-data">{value}</span>
-              </div>
-            ))}
+        <div className="exercise-details__title">
+          <h1>{exerciseData.exercise_name}</h1>
+        </div>
+        <div className="exercise-details__wrapper">
+          <VideoPlayer url={exerciseData?.video_url || ""} />
+          <div className="exercise-details__info">
+            <h3 className="exercise-details__heading">Exercise Details</h3>
+            <div className="exercise-details__list">
+              {getDetailsInKeyValuePairs().map(({ name, value }, index) => (
+                <div className="exercise-details__item" key={index}>
+                  <span className="exercise-details__item-name">{name}</span>
+                  <span className="exercise-details__item-seperator">:</span>
+                  <span className="exercise-details__item-data">{value}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

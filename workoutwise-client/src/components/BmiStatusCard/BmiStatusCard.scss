@@ -47,11 +47,41 @@
         $font-weight: 700
       );
     }
+    &--normal-weight {
+      @include text-style(
+        $color: $normal-weight-text,
+        $font-size: 1.875rem,
+        $font-weight: 700
+      );
+    }
+    &--over-weight {
+      @include text-style(
+        $color: $over-weight-text,
+        $font-size: 1.875rem,
+        $font-weight: 700
+      );
+    }
+    &--obesity {
+      @include text-style(
+        $color: $obesity-text,
+        $font-size: 1.875rem,
+        $font-weight: 700
+      );
+    }
   }
   &__title {
     @include text-style();
     &--under-weight {
       @include text-style($color: $under-weight-text);
+    }
+    &--normal-weight {
+      @include text-style($color: $normal-weight-text);
+    }
+    &--over-weight {
+      @include text-style($color: $over-weight-text);
+    }
+    &--obesity {
+      @include text-style($color: $obesity-text);
     }
   }
   &__status-block {
@@ -64,9 +94,26 @@
     &--under-weight {
       @include text-style($color: $under-weight-text, $font-weight: 600);
     }
+    &--normal-weight {
+      @include text-style($color: $normal-weight-text);
+    }
+    &--over-weight {
+      @include text-style($color: $over-weight-text);
+    }
+    &--obesity {
+      @include text-style($color: $obesity-text);
+    }
   }
-}
-
-.bmi-card--under-weight {
-  background-color: $under-weight-bg;
+  &--under-weight {
+    background-color: $under-weight-bg;
+  }
+  &--normal-weight {
+    background-color: $normal-weight-bg;
+  }
+  &--over-weight {
+    background-color: $over-weight-bg;
+  }
+  &--obesity {
+    background-color: $obesity-bg;
+  }
 }

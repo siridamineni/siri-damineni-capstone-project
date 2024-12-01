@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import SideNav from "../../components/SideNav/SideNav";
 import BmiStatusCard from "../../components/BmiStatusCard/BmiStatusCard";
 import UserDataTable from "../../components/UserDataTable/UserDataTable";
