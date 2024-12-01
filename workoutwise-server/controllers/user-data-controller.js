@@ -29,7 +29,10 @@ const getUserDataByuserId = async (req, res) => {
     return res.status(400).json({ error: "User Id is required" });
   }
   try {
-    const result = await knex("user_data").where({ user_id: userId }).first();
+    const result = await knex("user_data")
+      .where({ user_id: userId })
+      .orderBy("created_at", "desc")
+      .first();
     res.status(200).json(result);
   } catch (error) {
     res
