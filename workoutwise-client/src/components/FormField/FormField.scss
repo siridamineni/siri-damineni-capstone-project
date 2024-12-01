@@ -32,6 +32,9 @@
     border: 1px solid $primary;
     outline: none;
   }
+  &__input:hover {
+    border: 1px solid $primary;
+  }
   &__error-block {
     @include flexbox();
   }

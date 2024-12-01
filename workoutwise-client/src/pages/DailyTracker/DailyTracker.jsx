@@ -112,7 +112,7 @@ function DailyTracker() {
 
   const postDailyTrackerInformation = async (reqData) => {
     try {
-      const data = await axios.post(`${baseUrl}/user-data`, reqData);
+      await axios.post(`${baseUrl}/user-data`, reqData);
       toast.success("Created the Daily tracker Information");
     } catch (error) {
       toast.error(error.response.data.error);
@@ -121,7 +121,7 @@ function DailyTracker() {
 
   const updateDailyTrackerInformation = async (reqData) => {
     try {
-      const data = await axios.put(`${baseUrl}/user-details/${id}`, reqData);
+      await axios.put(`${baseUrl}/user-details/${id}`, reqData);
       toast.success("Updated the Daily tracker Information");
     } catch (error) {
       toast.error(error.response.data.error);
@@ -154,6 +154,7 @@ function DailyTracker() {
   useEffect(() => {
     getUserDataById(id);
   }, [id]);
+
   return (
     <main className="main-wrapper">
       <SideNav />
@@ -167,28 +168,88 @@ function DailyTracker() {
                   name="date"
                   value={dayjs(dailyTrackerData.date)}
                   onChange={handleChange}
+                  sx={{
+                    width: "100%",
+                    "& .MuiOutlinedInput-input": {
+                      fonSize: "0.8125rem",
+                      color: "#000000",
+                      padding: "0.5rem",
+                    },
+                    "& .MuiOutlinedInput-root:hover": {
+                      backgroundColor: "none", // Prevents background change
+                    },
+                    "&:hover:not(.Mui-focused)": {
+                      "& .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "#87ceeb",
+                      },
+                    },
+                    "& .MuiInputAdornment-root": {
+                      paddingRight: "20px", // Add padding to the right of the icon
+                    },
+                  }}
                 />
               </LocalizationProvider>
             </div>
-            <FormControl>
-              <label className="formfield__date-label">Exercise Category</label>
+            <FormControl className="formfield__select">
+              <label className="formfield__select-label">
+                Exercise Category
+              </label>
               <Select
+                sx={{
+                  backgroundColor: "#fafafa", // Background color
+                  borderRadius: "4px", // Border radius
+                  "& .MuiOutlinedInput-input": {
+                    padding: "0.3rem",
+                    fontSize: "0.8125rem",
+                    fontFamily: " Avenir, sans-serif",
+                    fontWeight: "normal",
+                  },
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "#e1e1e1", // Customize the border color
+                  },
+                  "&:hover .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "#87ceeb", // Customize the border color on hover
+                  },
+                }}
                 name="category"
                 value={dailyTrackerData.category}
                 onChange={handleChange}>
                 {categoryOptions.map(({ label, value }, index) => {
                   return (
-                    <MenuItem key={index} value={value}>
+                    <MenuItem
+                      style={{
+                        fontSize: "0.8125rem",
+                        fontFamily: " Avenir, sans-serif",
+                        fontWeight: "bold",
+                      }}
+                      key={index}
+                      value={value}>
                       {label}
                     </MenuItem>
                   );
                 })}
               </Select>
             </FormControl>
-            {dailyTrackerData.category !== "" && (
-              <FormControl>
-                <label className="formfield__date-label">Exercise Name</label>
+            {dailyTrackerData.category != undefined && (
+              <FormControl className="formfield__select">
+                <label className="formfield__select-label">Exercise Name</label>
                 <Select
+                  sx={{
+                    backgroundColor: "#fafafa", // Background color
+                    borderRadius: "4px", // Border radius
+                    "& .MuiOutlinedInput-input": {
+                      padding: "0.3rem",
+                      fontSize: "0.8125rem",
+                      fontFamily: " Avenir, sans-serif",
+                      fontWeight: "normal",
+                    },
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "#e1e1e1", // Customize the border color
+                    },
+                    "&:hover .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "#87ceeb", // Customize the border color on hover
+                    },
+                  }}
                   name="exerciseName"
                   value={dailyTrackerData.exerciseName}
                   onChange={handleChange}>
@@ -198,7 +259,14 @@ function DailyTracker() {
                     )
                     ?.exerciseOptions?.map(({ label, value }, index) => {
                       return (
-                        <MenuItem key={index} value={value}>
+                        <MenuItem
+                          style={{
+                            fontSize: "0.8125rem",
+                            fontFamily: " Avenir, sans-serif",
+                            fontWeight: "bold",
+                          }}
+                          key={index}
+                          value={value}>
                           {label}
                         </MenuItem>
                       );
@@ -206,7 +274,7 @@ function DailyTracker() {
                 </Select>
               </FormControl>
             )}
-            {dailyTrackerData.exerciseName !== "" && (
+            {dailyTrackerData.exerciseName !== undefined && (
               <FormField
                 label="Exercise Repeat Count"
                 name="repeatCount"
