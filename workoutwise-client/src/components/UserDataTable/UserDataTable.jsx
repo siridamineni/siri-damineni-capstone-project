@@ -1,5 +1,6 @@
 import React from "react";
 import "./UserDataTable.scss";
+import dayjs from "dayjs";
 import { IconButton } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -23,6 +24,11 @@ function UserDataTable({ rows, columns, handleDelete, handleEdit }) {
               <h4 className="user-data__value">{item.id}</h4>
             </div>
             <div className="user-data__cell">
+              <h4 className="user-data__value">
+                {dayjs(item.date).format("YYYY-MM-DD")}
+              </h4>
+            </div>
+            <div className="user-data__cell">
               <h4 className="user-data__value">{item.excerciseName}</h4>
             </div>
             <div className="user-data__cell">
@@ -39,7 +45,7 @@ function UserDataTable({ rows, columns, handleDelete, handleEdit }) {
                 aria-label="home"
                 color="primary"
                 onClick={() => handleEdit(item.id)}>
-                <EditIcon sx={{ fontSize: "20px" }} />
+                <EditIcon sx={{ fontSize: "20px", color: "#000000" }} />
               </IconButton>
             </div>
             <div className="user-data__cell">
@@ -47,7 +53,7 @@ function UserDataTable({ rows, columns, handleDelete, handleEdit }) {
                 aria-label="home"
                 color="primary"
                 onClick={() => handleDelete(item.id)}>
-                <DeleteIcon sx={{ fontSize: "20px" }} />
+                <DeleteIcon sx={{ fontSize: "20px", color: "#000000" }} />
               </IconButton>
             </div>
           </li>

@@ -31,6 +31,7 @@ function Dashboard() {
       const response = await axios.get(`${baseUrl}/all-user-data/${id}`);
       const rows = [
         "Id",
+        "Date",
         "Excercise Name",
         "Category",
         "Body Region",
@@ -39,6 +40,7 @@ function Dashboard() {
       const columns = response.data.map((item) => {
         return {
           id: item.id,
+          date: item.date,
           excerciseName: item.exercise_name,
           category: item.category,
           bodyRegion: item.body_region,

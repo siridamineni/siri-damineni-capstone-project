@@ -65,14 +65,10 @@
   flex: 1;
 }
 
-.user-data__list-body .user-data__cell:nth-child(2),
 .user-data__list-body .user-data__cell:nth-child(3),
 .user-data__list-body .user-data__cell:nth-child(4),
-.user-data__list-body .user-data__cell:nth-child(5),
-.user-data__list-header .user-data__cell:nth-child(2),
 .user-data__list-header .user-data__cell:nth-child(3),
-.user-data__list-header .user-data__cell:nth-child(4),
-.user-data__list-header .user-data__cell:nth-child(5) {
+.user-data__list-header .user-data__cell:nth-child(4) {
   flex: 2;
 }
 
