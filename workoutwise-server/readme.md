@@ -3,7 +3,7 @@ Clone the repository:
 git clone https://github.com/siridamineni/siri-damineni-capstone-project.git
 
 Navigate to the project directory:
-cd workoutwise-client/
+cd workoutwise-server/
 
 Checkout to the develop branch:
 git checkout develop
@@ -11,12 +11,13 @@ git checkout develop
 Set up the .env file by following the instructions provided in the example.env file.
 
 Install the required dependencies:
-
 npm install
 
-Important: Set up the backend before running the frontend.
+Run migrations to set up the database schema:
+npm run migrate
 
-Start the development server:
+Insert seed data into the database:
+npm run seed
 
+Start the server:
 npm run dev
-The project should now be running locally on your browser.
