@@ -19,7 +19,7 @@ function Dashboard() {
 
   const getUserData = async (id) => {
     try {
-      const data = await axios.get(`${baseUrl}/user-data/${id}`);
+      const data = await axios.get(`${baseUrl}/api/user-data/${id}`);
       setUserData(data.data);
     } catch (error) {
       toast.error(error.response.data.error);
@@ -28,7 +28,7 @@ function Dashboard() {
 
   const getAllUserDataById = async (id) => {
     try {
-      const response = await axios.get(`${baseUrl}/all-user-data/${id}`);
+      const response = await axios.get(`${baseUrl}/api/all-user-data/${id}`);
       const rows = [
         "Id",
         "Date",
@@ -56,7 +56,7 @@ function Dashboard() {
   const getExerciseCountByBodyRegion = async (id) => {
     try {
       const result = await axios.get(
-        `${baseUrl}/ex-count-by-body-region/${id}`
+        `${baseUrl}/api/ex-count-by-body-region/${id}`
       );
       const data = result?.data.map((item) => ({
         name: item.body_region,
@@ -69,7 +69,7 @@ function Dashboard() {
   };
   const deleteUserDataById = async (id) => {
     try {
-      const result = await axios.delete(`${baseUrl}/user-details/${id}`);
+      const result = await axios.delete(`${baseUrl}/api/user-details/${id}`);
       setIsDeleted(true);
       toast.success("Selected User Data deleted Successfully");
     } catch (error) {

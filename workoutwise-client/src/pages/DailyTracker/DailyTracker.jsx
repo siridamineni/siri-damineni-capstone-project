@@ -88,7 +88,7 @@ function DailyTracker() {
 
   const getCategories = async () => {
     try {
-      const response = await axios.get(`${baseUrl}/categories`);
+      const response = await axios.get(`${baseUrl}/api/categories`);
       setCategoryOptions(response.data);
     } catch (error) {
       toast.error(error.response.data.error);
@@ -97,7 +97,7 @@ function DailyTracker() {
 
   const getAllCategoryExercises = async () => {
     try {
-      const response = await axios.get(`${baseUrl}/all-category-exercises`);
+      const response = await axios.get(`${baseUrl}/api/all-category-exercises`);
       const exerciseDataOfAllCategories = response.data.map((item) => ({
         category: item.category,
         exerciseOptions: item.exercises.map((eachExercise) => ({
@@ -113,7 +113,7 @@ function DailyTracker() {
 
   const getUserDataById = async (id) => {
     try {
-      const response = await axios.get(`${baseUrl}/user-details/${id}`);
+      const response = await axios.get(`${baseUrl}/api/user-details/${id}`);
       const userData = {
         date: dayjs(response?.data?.date).format("YYYY-MM-DD"),
         height: response?.data?.height,
@@ -131,7 +131,7 @@ function DailyTracker() {
 
   const postDailyTrackerInformation = async (reqData) => {
     try {
-      await axios.post(`${baseUrl}/user-data`, reqData);
+      await axios.post(`${baseUrl}/api/user-data`, reqData);
       toast.success("Updated the Daily tracker Information");
       handleNavigateToDashboard();
     } catch (error) {
@@ -141,7 +141,7 @@ function DailyTracker() {
 
   const updateDailyTrackerInformation = async (reqData) => {
     try {
-      await axios.put(`${baseUrl}/user-details/${id}`, reqData);
+      await axios.put(`${baseUrl}/api/user-details/${id}`, reqData);
       toast.success("Modified the Daily tracker Information");
       handleNavigateToDashboard();
     } catch (error) {

@@ -44,7 +44,7 @@ function Login() {
 
   const LoginUser = async (data) => {
     try {
-      const response = await axios.post(`${baseUrl}/authenticate`, data);
+      const response = await axios.post(`${baseUrl}/api/authenticate`, data);
       const { token, user_info } = response.data;
       localStorage.setItem(TOKEN_NAME, token);
       localStorage.setItem(USER_ID, user_info.userId);

@@ -11,7 +11,7 @@ function WorkoutDetails() {
   const { id } = params;
 
   const getExerciseData = async (exerciseId) => {
-    const data = await axios(`${baseUrl}/excercises/${exerciseId}`);
+    const data = await axios(`${baseUrl}/api/excercises/${exerciseId}`);
     setExerciseData(data.data);
   };
 

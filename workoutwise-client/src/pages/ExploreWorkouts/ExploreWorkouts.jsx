@@ -21,12 +21,12 @@ function ExploreWorkouts() {
     setIntensity(e.target.value);
   };
   const getAllCategories = async () => {
-    const data = await axios.get(`${baseUrl}/categories`);
+    const data = await axios.get(`${baseUrl}/api/categories`);
     setCategoryOptions(data.data);
   };
 
   const getAllIntensities = async () => {
-    const data = await axios.get(`${baseUrl}/intensities`);
+    const data = await axios.get(`${baseUrl}/api/intensities`);
     setIntensityOptions(data.data);
   };
 
@@ -37,18 +37,18 @@ function ExploreWorkouts() {
     let data = [];
     if (selectedCategory && selectedIntensity) {
       data = await axios.get(
-        `${baseUrl}/excercises?category=${selectedCategory}&intensity=${selectedIntensity}`
+        `${baseUrl}/api/excercises?category=${selectedCategory}&intensity=${selectedIntensity}`
       );
     } else if (selectedCategory) {
       data = await axios.get(
-        `${baseUrl}/excercises?category=${selectedCategory}`
+        `${baseUrl}/api/excercises?category=${selectedCategory}`
       );
     } else if (selectedIntensity) {
       data = await axios.get(
-        `${baseUrl}/excercises?intensity=${selectedIntensity}`
+        `${baseUrl}/api/excercises?intensity=${selectedIntensity}`
       );
     } else {
-      data = await axios.get(`${baseUrl}/excercises`);
+      data = await axios.get(`${baseUrl}/api/excercises`);
     }
     const excercises = AddThumbnailToExcerciseData(data.data);
     setExcerciseData(excercises);

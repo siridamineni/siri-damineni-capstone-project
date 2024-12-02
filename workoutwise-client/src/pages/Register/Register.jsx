@@ -70,7 +70,7 @@ function Register() {
 
   const createUser = async (data) => {
     try {
-      const response = await axios.post(`${baseUrl}/register`, data);
+      const response = await axios.post(`${baseUrl}/api/register`, data);
       toast.success("You are Registered Successfully. Please Login");
       handleNavigateToLogin();
     } catch (error) {
