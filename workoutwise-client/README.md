@@ -1,8 +1,20 @@
-# React + Vite
+Clone the repository:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+git clone https://github.com/siridamineni/siri-damineni-capstone-project.git
 
-Currently, two official plugins are available:
+Navigate to the project directory:
+cd workoutwise-client/
+Checkout to the develop branch:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+git checkout develop
+
+Install the required dependencies:
+
+npm install
+
+Important: Set up the backend before running the frontend.
+
+Start the development server:
+
+npm run dev
+The project should now be running locally on your browser.
