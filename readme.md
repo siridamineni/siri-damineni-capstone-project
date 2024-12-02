@@ -4,20 +4,17 @@ WorkoutWise
 
 ## Overview
 
-WorkoutWise is a personalized workout tracking and recommendation app that tailors new workout suggestions based on users' vital information and fitness goals.
+WorkoutWise is an interactive fitness app that helps users explore new exercises while enabling them to visualize and monitor their daily workout activities, fostering a more engaging and informed fitness journey.
 
 ### Problem Space
 
-My application helps users achieve an optimal BMI by incorporating a daily tracker for their physical activities and monitoring long-term progress. It provides personalized workout recommendations to support their fitness journey effectively.
+
+Many fitness enthusiasts struggle to discover new exercises and effectively track their daily workout activities, leading to monotonous routines and limited progress visibility. This lack of variety and insight hinders their ability to stay motivated and achieve their fitness goals efficiently.
 
 ### User Profile
 
-Fitness Enthusiast:
-
-- Users aiming to maintain a healthy BMI and overall well-being.
-- Individuals seeking to track their workout progress to monitor long-term improvements.
+- Individuals seeking to track their workout progress to monitor their improvements.
 - Fitness enthusiasts looking to explore and incorporate new types of workouts into their routine.
-- Users who want the ability to customize and manage their daily workout regimen effectively.
 
 ### Features
 
@@ -26,7 +23,7 @@ Fitness Enthusiast:
 - **As a New User:**
 
   - I should be able to register by clicking the "Register" button below the login form.
-  - During registration, I should provide the following information: first name, last name, email, date of birth, gender, height, weight, preferred workout type, password, and confirm password.
+  - During registration, I should provide the following information: First Name, Last Name, Email, Gender, Password and Confirm Password
 
 - **As a Registered User:**
   - I should be able to log in to the application by entering my username and password.
@@ -38,57 +35,44 @@ Fitness Enthusiast:
 - **As a Logged-in User:**
 
   - I should see my dashboard displaying:
-    - Current BMI
-    - Daily workout stats
-    - Weekly step count stats for each day
-    - A list of liked workouts
-    - A record of previously performed workouts
+    
+    - A table that displays previously performed exercises by date.
 
-- **Pop-up Notification:**
-
-  - A pop-up should appear after logging in, indicating that I need to update my daily tracker with the latest data.
 
 - **Navigation to Daily Tracker:**
-  - I should be able to navigate to the "Daily Tracker" page by clicking the "Daily Tracker" option in the sidebar.
-  - On the Daily Tracker page, I should be able to input my previous day's workout details.
+  - user should be able to navigate to the 'Daily Tracker' page by clicking the 'Daily Tracker' option in the sidebar.
+  - On the 'Daily Tracker' page, user should be able to input the details of my previous day's performed exercises along with the remaining information.
+  - After updating the daily tracker the updated informatuion will be populated in dashboard.
 
 ---
 
 ### **Explore Workouts Page:**
 
 - **As a User:**
-
-  - I should be able to explore suggested workouts based on my vital information by clicking "Explore Workouts" in the sidebar.
-  - I should be able to filter the workout list by:
-    - Duration
-    - Intensity
-    - Name of the workout
+  - User should be able to explore exercises by clicking 'Explore Workouts' in the sidebar.
+  - User should be able to filter the exercise list by
+      - Intensity
+      - Category
 
 - **Workout Details Page:**
-  - On selecting a workout, I should be directed to a separate page displaying:
-    - Detailed instructions
-    - Duration and equipment required
+  - Upon selecting a exercise, user should be directed to a separate page displaying:
     - Demo videos
-    - An option to "Like" the workout
-    - An option to "Add" the workout to my personalized workout regimen
+    - Exercise details
 
 ## Implementation
 
 ### Tech Stack
 
 - React
-- TypeScript
 - MySQL
 - Express
 - Client Libraries:
   - React
-  - styled-components
+  - sass
   - react-router
   - axios
-  - react-query
   - recharts
   - mui
-  - formik
 - Server Libraries
   - knex
   - Express
@@ -115,23 +99,19 @@ Landing Page
 
 - login
 
-  ![](login.jpg)
 
 - Register
 
-  ![](register.jpg)
+
 
 - dashboard
 
-  ![](dashboard.jpg)
 
 - daily Tracker
 
-  ![](dailytracker.jpg)
 
 - explore workouts
 
-  ![](explore-workouts.jpg)
 
 ### Data
 
@@ -147,9 +127,7 @@ Parameters:
 
 - firstname: User's first Name
 - lastname: User's last Name
-- DOB: User's DOB
 - Gender: User's Gender
-- Workout Frequency per day in Number
 - Email
 - Password
 - Confirm Password
@@ -179,110 +157,6 @@ Response:
 }
 ```
 
-**GET /excercises**
-
-- Get 10 records of Ecercises
-
-Response:
-
-```
-[
-{
- "excercise_id": 1,
- "excercise_name": '3/4 Sit-Up',
- "body-part": ["waist", "abs"],
- "intensity": 'medium',
- "duration": 20
-},
-{
-"excercise_id": 4,
- "excercise_name": 'Alternate Heel Touchers',
- "body-part": ["abs"],
- "intensity": 'high',
- "duration": 20
-}
-]
-
-```
-
-**GET /excercises/:body-part**
-
-- Filter workout based on the body part selected. If Waist selected
-
-Response:
-
-```
-[
-{
- "excercise_id": 1,
- "excercise_name": '3/4 Sit-Up',
- "body-part": ["waist"],
- "intensity": 'medium',
- "duration": 20
-},
-{
- "excercise_id": 7,
- "excercise_name": 'Air Bike',
- "body-part": ["waist"],
- "intensity": 'high',
- "duration": 15
-}
-]
-
-```
-
-**GET /excercises/:id**
-
-- Get all the details of the Excercises By Id
-
-Response:
-
-```
-{
-  "excercise_id": 1,
-  "excercise_name": "3/4 Sit-Up"
-  "body_part": ["waist", "abs"],
-  "intensity": "medium",
-  "duration": 20,
-  "imgUrl": "sample.jpg",
-  "instructions": [
-"Lie flat on your back with your knees bent and feet flat on the ground.",
-"Place your hands behind your head with your elbows pointing outwards.",
-"Engaging your abs, slowly lift your upper body off the ground, curling forward until your torso is at a 45-degree angle.",
-"Pause for a moment at the top, then slowly lower your upper body back down to the starting position.",
-"Repeat for the desired number of repetitions."],
-"equipment": "no equipment required",
-"reference-video-links": [sample-video-links],
-}
-```
-
-**POST /daily-tracker**
-
-- Allow user to post the previous day Excercise Information
-
-Parameters:
-
-- Yesterday Date
-- Category of Workout
-- Name of the Workout
-- No of Repeations
-- Duration
-- Step Count
-
-Response:
-
-```
-{
-  "user_id": 1,
-  "height": 125,
-  "weight": 137,
-  "bmi": 88,
-  "stepCount": 12000,
-  "excercise_id": 2,
-  "excercise_name": "3/4 Sit-Up",
-  "rep_count": 10
-}
-```
 
 ## Roadmap
 
@@ -292,7 +166,7 @@ Response:
 
   - Create Server
 
-    - express project with with routing all the dependecies installed
+    - express project with  routing all the dependecies installed
     - Create Migrations and seed
       - Excercise Table
         - Organize diverse workout categories into subcategories based on target body parts, along with detailed exercise information for each
@@ -374,7 +248,4 @@ Response:
 
 ## Future Implementations
 
--- Calories Burned so far based on the History of Progress
--- Diet Plan Suggestion
--- Different Category Diets
--- Recipes Suggestion based on Category
+--step count visualization
