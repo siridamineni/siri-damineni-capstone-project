@@ -8,7 +8,6 @@ WorkoutWise is an interactive fitness app that helps users explore new exercises
 
 ### Problem Space
 
-
 Many fitness enthusiasts struggle to discover new exercises and effectively track their daily workout activities, leading to monotonous routines and limited progress visibility. This lack of variety and insight hinders their ability to stay motivated and achieve their fitness goals efficiently.
 
 ### User Profile
@@ -35,9 +34,8 @@ Many fitness enthusiasts struggle to discover new exercises and effectively trac
 - **As a Logged-in User:**
 
   - I should see my dashboard displaying:
-    
-    - A table that displays previously performed exercises by date.
 
+    - A table that displays previously performed exercises by date.
 
 - **Navigation to Daily Tracker:**
   - user should be able to navigate to the 'Daily Tracker' page by clicking the 'Daily Tracker' option in the sidebar.
@@ -49,10 +47,11 @@ Many fitness enthusiasts struggle to discover new exercises and effectively trac
 ### **Explore Workouts Page:**
 
 - **As a User:**
+
   - User should be able to explore exercises by clicking 'Explore Workouts' in the sidebar.
   - User should be able to filter the exercise list by
-      - Intensity
-      - Category
+    - Intensity
+    - Category
 
 - **Workout Details Page:**
   - Upon selecting a exercise, user should be directed to a separate page displaying:
@@ -98,20 +97,22 @@ Many fitness enthusiasts struggle to discover new exercises and effectively trac
 Landing Page
 
 - login
-
+  [Alt text](./login.png)
 
 - Register
-
-
+  [Alt text](./register.png)
 
 - dashboard
-
+  [Alt text](./dashboard.png)
 
 - daily Tracker
-
+  [Alt text](./dailytracker.png)
 
 - explore workouts
+  [Alt text](./explore-workouts.png)
 
+-workout Details
+[Alt text](./exercise-details.png)
 
 ### Data
 
@@ -157,7 +158,6 @@ Response:
 }
 ```
 
-
 ## Roadmap
 
 **Milestone 1**
@@ -166,7 +166,7 @@ Response:
 
   - Create Server
 
-    - express project with  routing all the dependecies installed
+    - express project with routing all the dependecies installed
     - Create Migrations and seed
       - Excercise Table
         - Organize diverse workout categories into subcategories based on target body parts, along with detailed exercise information for each
