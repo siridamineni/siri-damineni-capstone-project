@@ -17,4 +17,5 @@
 
 .stats__container {
   @include flexbox($justify-content: space-between);
+  width: 80%;
 }

@@ -1,0 +1,21 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.piechart-wrapper {
+  @include flexbox($flex-direction: column, $gap: 0.5rem);
+  padding: 10px;
+}
+
+.piechart {
+  &__title-container {
+    @include flexbox();
+    padding: 10px;
+  }
+  &__title {
+    @include text-style(
+      $font-size: 1.5rem,
+      $line-height: 2rem,
+      $font-weight: bold
+    );
+  }
+}

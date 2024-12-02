@@ -7,7 +7,7 @@ import axios from "axios";
 import { USER_ID } from "../../shared/constants";
 import "./Dashboard.scss";
 import { toast } from "react-toastify";
-import ExercisePieChart from "../../components/PieChart/ExercisePieChart";
+import ExerciseByBodyRegionPieChart from "../../components/ExerciseByBodyRegionPieChart/ExerciseByBodyRegionPieChart";
 function Dashboard() {
   const baseUrl = import.meta.env.VITE_BASE_URL;
   const navigate = useNavigate();
@@ -102,7 +102,7 @@ function Dashboard() {
             bmiValue={userData?.bmi}
             bmiStatus={userData?.bmi_status}
           />
-          <ExercisePieChart data={pieChartData} />
+          <ExerciseByBodyRegionPieChart data={pieChartData} />
         </div>
         <UserDataTable
           rows={userTableData.rows}
