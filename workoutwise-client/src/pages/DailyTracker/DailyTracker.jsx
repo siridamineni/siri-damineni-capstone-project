@@ -6,6 +6,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import dayjs from "dayjs";
+import errorIcon from "../../assets/icons/error.svg";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
@@ -26,7 +27,7 @@ function DailyTracker() {
     weight: 0,
     stepCount: 0,
     category: "",
-    exerciseName: "",
+    exerciseName: 0,
     repeatCount: 0,
   });
   const [categoryOptions, setCategoryOptions] = useState([]);
@@ -48,20 +49,38 @@ function DailyTracker() {
   };
 
   const handleDataValidation = () => {
-    let error = {};
-    if (dailyTrackerData.height === 0) {
+    const error = {};
+    if (dailyTrackerData.date === undefined) {
+      error.date = "Please Provide valid Date";
+    }
+    if (dailyTrackerData.category === undefined) {
+      error.category = "Please Select the Category of Exercise";
+    }
+    if (dailyTrackerData.exerciseName === undefined) {
+      error.exerciseName = "Please Select the Exercise Name";
+    }
+    if (dailyTrackerData.repeatCount === undefined) {
+      error.repeatCount = "Please Enter the Repeat Count";
+    } else if (dailyTrackerData.repeatCount < 0) {
+      error.repeatCount = "Please Provide Valid Repeat Count";
+    }
+    if (dailyTrackerData.weight === undefined) {
+      error.weight = "Please provide Weight";
+    } else if (dailyTrackerData.weight <= 0) {
+      error.weight = "Please provide Valid Weight";
+    }
+    if (dailyTrackerData.stepCount === undefined) {
+      error.stepCount = "Please provide Step Count";
+    } else if (dailyTrackerData.stepCount < 0) {
+      error.stepCount = "Please provide Valid Step Count";
+    }
+    if (dailyTrackerData.height === undefined) {
       error.height = "Please provide your Height";
     } else if (
       parseFloat(dailyTrackerData.height) < 2 ||
       parseFloat(dailyTrackerData.height) > 7
     ) {
       error.height = "Please provide valid Height";
-    }
-    if (dailyTrackerData.weight === 0) {
-      error.weight = "Please provide your weight";
-    }
-    if (dailyTrackerData.stepCount === 0) {
-      error.stepCount = "please provide your step count for today";
     }
     setErrorField(error);
     return Object.keys(error).length === 0;
@@ -113,7 +132,8 @@ function DailyTracker() {
   const postDailyTrackerInformation = async (reqData) => {
     try {
       await axios.post(`${baseUrl}/user-data`, reqData);
-      toast.success("Created the Daily tracker Information");
+      toast.success("Updated the Daily tracker Information");
+      handleNavigateToDashboard();
     } catch (error) {
       toast.error(error.response.data.error);
     }
@@ -122,7 +142,8 @@ function DailyTracker() {
   const updateDailyTrackerInformation = async (reqData) => {
     try {
       await axios.put(`${baseUrl}/user-details/${id}`, reqData);
-      toast.success("Updated the Daily tracker Information");
+      toast.success("Modified the Daily tracker Information");
+      handleNavigateToDashboard();
     } catch (error) {
       toast.error(error.response.data.error);
     }
@@ -139,12 +160,13 @@ function DailyTracker() {
       exercise_id: dailyTrackerData.exerciseName,
       rep_count: parseInt(dailyTrackerData.repeatCount),
     };
-    if (id) {
-      updateDailyTrackerInformation(data);
-    } else {
-      postDailyTrackerInformation(data);
+    if (handleDataValidation()) {
+      if (id) {
+        updateDailyTrackerInformation(data);
+      } else {
+        postDailyTrackerInformation(data);
+      }
     }
-    handleNavigateToDashboard();
   };
   useEffect(() => {
     getCategories();
@@ -154,7 +176,6 @@ function DailyTracker() {
   useEffect(() => {
     getUserDataById(id);
   }, [id]);
-
   return (
     <main className="main-wrapper">
       <SideNav />
@@ -166,8 +187,10 @@ function DailyTracker() {
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DatePicker
                   name="date"
-                  value={dayjs(dailyTrackerData.date)}
-                  onChange={handleChange}
+                  value={dayjs(dailyTrackerData?.date) || dayjs(new Date())}
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
                   sx={{
                     width: "100%",
                     "& .MuiOutlinedInput-input": {
@@ -189,6 +212,16 @@ function DailyTracker() {
                   }}
                 />
               </LocalizationProvider>
+              {errorField.date && (
+                <span className="field__error-block">
+                  <img
+                    src={errorIcon}
+                    alt="error"
+                    className="field__error-img"
+                  />
+                  <p className="field__error">{errorField.date}</p>
+                </span>
+              )}
             </div>
             <FormControl className="formfield__select">
               <label className="formfield__select-label">
@@ -213,8 +246,8 @@ function DailyTracker() {
                   },
                 }}
                 name="category"
-                value={dailyTrackerData.category || ""}
-                onChange={handleChange}>
+                value={dailyTrackerData?.category || ""}
+                onChange={(e) => handleChange(e)}>
                 <MenuItem value="" disabled>
                   Select the category Option
                 </MenuItem>
@@ -233,6 +266,16 @@ function DailyTracker() {
                   );
                 })}
               </Select>
+              {errorField.category && (
+                <span className="field__error-block">
+                  <img
+                    src={errorIcon}
+                    alt="error"
+                    className="field__error-img"
+                  />
+                  <p className="field__error">{errorField.category}</p>
+                </span>
+              )}
             </FormControl>
             {dailyTrackerData.category != undefined && (
               <FormControl className="formfield__select">
@@ -256,8 +299,10 @@ function DailyTracker() {
                     },
                   }}
                   name="exerciseName"
-                  value={dailyTrackerData.exerciseName || ""}
-                  onChange={handleChange}>
+                  value={dailyTrackerData?.exerciseName || ""}
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}>
                   <MenuItem value="" disabled>
                     Select the exercise performed in the Options
                   </MenuItem>
@@ -280,6 +325,16 @@ function DailyTracker() {
                       );
                     })}
                 </Select>
+                {errorField.category && (
+                  <span className="field__error-block">
+                    <img
+                      src={errorIcon}
+                      alt="error"
+                      className="field__error-img"
+                    />
+                    <p className="field__error">{errorField.exerciseName}</p>
+                  </span>
+                )}
               </FormControl>
             )}
             {dailyTrackerData.exerciseName !== undefined && (
@@ -287,7 +342,7 @@ function DailyTracker() {
                 label="Exercise Repeat Count"
                 name="repeatCount"
                 placeholder={"Enter Exercise Repeation Count"}
-                inputValue={dailyTrackerData.repeatCount}
+                inputValue={dailyTrackerData.repeatCount || ""}
                 handleChange={handleChange}
                 type="number"
                 isError={errorField?.repeatCount !== undefined}
@@ -298,7 +353,7 @@ function DailyTracker() {
               label="Height"
               name="height"
               placeholder="Enter your Height in Feet"
-              inputValue={dailyTrackerData.height}
+              inputValue={dailyTrackerData.height || 0}
               handleChange={handleChange}
               type="number"
               isError={errorField?.height !== undefined}
@@ -308,7 +363,7 @@ function DailyTracker() {
               label="Weight"
               name="weight"
               placeholder="Enter your Weight in lbs or Kgs"
-              inputValue={dailyTrackerData.weight}
+              inputValue={dailyTrackerData.weight || 0}
               handleChange={handleChange}
               type="number"
               isError={errorField?.weight !== undefined}
@@ -318,7 +373,7 @@ function DailyTracker() {
               label="Today's Step Count"
               name="stepCount"
               placeholder="Enter today's Step Count"
-              inputValue={dailyTrackerData.stepCount}
+              inputValue={dailyTrackerData.stepCount || 0}
               handleChange={handleChange}
               type="number"
               isError={errorField?.stepCount !== undefined}

@@ -98,11 +98,15 @@ function Dashboard() {
       <SideNav />
       <section className="dashboard-wrapper">
         <div className="stats__container">
-          <BmiStatusCard
-            bmiValue={userData?.bmi}
-            bmiStatus={userData?.bmi_status}
-          />
-          <ExerciseByBodyRegionPieChart data={pieChartData} />
+          {userData?.bmi && (
+            <BmiStatusCard
+              bmiValue={userData?.bmi}
+              bmiStatus={userData?.bmi_status}
+            />
+          )}
+          {pieChartData?.length > 0 && (
+            <ExerciseByBodyRegionPieChart data={pieChartData} />
+          )}
         </div>
         <UserDataTable
           rows={userTableData.rows}

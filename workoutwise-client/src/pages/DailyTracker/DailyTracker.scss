@@ -63,3 +63,16 @@
     padding-bottom: 0.5rem;
   }
 }
+
+.field {
+  &__error-block {
+    @include flexbox($justify-content: flex-start);
+  }
+  &__error-img {
+    height: 12px;
+    width: 12px;
+  }
+  &__error {
+    @include text-style($color: $error);
+  }
+}
