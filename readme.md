@@ -97,26 +97,26 @@ Many fitness enthusiasts struggle to discover new exercises and effectively trac
 Landing Page
 
 - login
-  [Alt text](./login.png)
+  [click here](./login.png)
 
 - Register
-  [Alt text](./register.png)
+  [click here](./register.png)
 
 - dashboard
-  [Alt text](./dashboard.png)
+  [click here](./dashboard.png)
 
 - daily Tracker
-  [Alt text](./dailytracker.png)
+  [click here](./dailytracker.png)
 
 - explore workouts
-  [Alt text](./explore-workouts.png)
+  [click here](./explore-workouts.png)
 
 -workout Details
-[Alt text](./exercise-details.png)
+[click here](./exercise-details.png)
 
 ### Data
 
-![](mock-db.png)
+![click here](mock-db.png)
 
 ### Endpoints
 
