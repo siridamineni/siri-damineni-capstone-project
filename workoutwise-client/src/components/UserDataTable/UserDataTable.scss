@@ -1,44 +1,12 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
 
-// .table-container {
-//   border: 1px solid $mercury;
-//   background-color: $white;
-//   border-radius: 4px;
-//   overflow-y: auto;
-//   width: 50vw;
-//   height: 50vh;
-//   margin-bottom: 20px;
-//   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-//   position: relative;
-// }
-
-// &.MuiTableContainer-root {
-//     width: auto;
-//     margin: 10px;
-//   }
-
-//   &.MuiTable-root {
-//     position: relative;
-//     position: sticky;
-//     top: 0;
-//     z-index: 999 !important;
-//     .MuiTableHead-root {
-//       position: sticky;
-//       top: 0;
-//       z-index: 999 !important;
-//     }
-//   }
-//   .MuiTableCell-root {
-//     @include text-style();
-//     padding: 10px;
-//   }
-//   .MuiTableCell-head {
-//     @include text-style($font-weight: 900);
-//   }
-
 .user-data__list {
-  @include flexbox($flex-direction: column, $gap: 0);
+  @include flexbox(
+    $flex-direction: column,
+    $gap: 0,
+    $justify-content: flex-start
+  );
   border: 1px solid $mercury;
   border-radius: 10px;
   height: 400px;

@@ -5,7 +5,6 @@ import SelectDropdown from "../../components/SelectDropdown/SelectDropdown";
 import "./ExploreWorkouts.scss";
 import ExcerciseCard from "../../components/ExcerciseCard/ExcerciseCard";
 import { useNavigate } from "react-router-dom";
-
 function ExploreWorkouts() {
   const baseUrl = import.meta.env.VITE_BASE_URL;
   const navigate = useNavigate();
@@ -56,10 +55,9 @@ function ExploreWorkouts() {
   };
 
   function getVideoIdFromUrl(url) {
-    const regex = /(?:\?v=|youtu\.be\/)([^&]+)/;
-
+    const regex =
+      /(?:youtube\.com\/(?:watch\?v=|embed\/|v\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})(?:\?[^\/]*)?/;
     const match = url.match(regex);
-
     return match && match[1];
   }
 
