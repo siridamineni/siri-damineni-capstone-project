@@ -40,38 +40,20 @@ const excercisesGroupedByCategories = async () => {
 excercisesGroupedByCategories();
 
 export const getAllExcercises = async (req, res) => {
-  const { category, intensity } = req.query;
+  const { category, intensity, bodyRegion } = req.query;
   try {
-    if (category && intensity) {
-      const categories = fs.readFileSync(
-        "./data/excercisesByCategories.json",
-        "utf-8"
-      );
-      const parsedCategories = JSON.parse(categories);
-      const result = parsedCategories
-        .find((item) => item.category === category)
-        .excercises.filter((item) => item.difficulty_level === intensity);
-      return res.json(result.slice(0, 10));
-    } else if (category) {
-      const categories = fs.readFileSync(
-        "./data/excercisesByCategories.json",
-        "utf-8"
-      );
-      const parsedCategories = JSON.parse(categories);
-      const result = parsedCategories
-        .find((item) => item.category === category)
-        .excercises.slice(0, 20);
-      return res.json(result);
-    } else if (intensity) {
-      const excerciseData = await knex("exercises");
-      const filterExcercisesByIntensity = excerciseData
-        .filter((item) => item.difficulty_level === intensity)
-        .slice(0, 20);
-      return res.json(filterExcercisesByIntensity);
-    } else {
-      const data = await knex("exercises").limit(20);
-      res.status(200).json(data);
+    const resQuery = knex("exercises");
+    if (category) {
+      resQuery.where({ category });
     }
+    if (intensity) {
+      resQuery.where({ difficulty_level: intensity });
+    }
+    if (bodyRegion) {
+      resQuery.where({ body_region: bodyRegion });
+    }
+    const result = await resQuery.select("*").limit(20);
+    return res.status(200).json(result);
   } catch (err) {
     res.status(500).json({
       message: "An error occured while retrieving the Excercises data",
@@ -92,11 +74,9 @@ export const getAllCategoryExercises = async (_req, res) => {
     }));
     res.json(RecordsOfExercisesForAllCategories);
   } catch (err) {
-    res
-      .status(500)
-      .json({
-        message: "An error occured while retrieving all category exercises",
-      });
+    res.status(500).json({
+      message: "An error occured while retrieving all category exercises",
+    });
   }
 };
 export const getAllCategories = async (_req, res) => {
@@ -132,6 +112,20 @@ export const getAllIntensityLevels = async (_req, res) => {
   }
 };
 
+export const getAllBodyRegion = async (_req, res) => {
+  try {
+    const data = await knex("exercises")
+      .distinct("body_region")
+      .whereNot("body_region", "like", "Unsorted*")
+      .pluck("body_region");
+    const allBodyRegions = data.map((item) => ({ label: item, value: item }));
+    res.status(200).json(allBodyRegions);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "An error while retrieving the Body Region" });
+  }
+};
 export const getExcerciseById = async (req, res) => {
   const { id } = req.params;
   try {
