@@ -10,8 +10,10 @@ function ExploreWorkouts() {
   const navigate = useNavigate();
   const [category, setCategory] = useState("");
   const [intensity, setIntensity] = useState("");
+  const [bodyRegion, setBodyRegion] = useState("");
   const [categoryOptions, setCategoryOptions] = useState([]);
   const [intensityOptions, setIntensityOptions] = useState([]);
+  const [bodyRegionOptions, setBodyRegionOptions] = useState([]);
   const [excerciseData, setExcerciseData] = useState([]);
   const handleCategoryChange = (e) => {
     setCategory(e.target.value);
@@ -19,6 +21,10 @@ function ExploreWorkouts() {
 
   const handleIntensityChange = (e) => {
     setIntensity(e.target.value);
+  };
+
+  const handleBodyRegionChange = (e) => {
+    setBodyRegion(e.target.value);
   };
   const getAllCategories = async () => {
     const data = await axios.get(`${baseUrl}/api/categories`);
@@ -30,26 +36,22 @@ function ExploreWorkouts() {
     setIntensityOptions(data.data);
   };
 
+  const getAllBodyRegion = async () => {
+    const data = await axios.get(`${baseUrl}/api/body-region`);
+    setBodyRegionOptions(data.data);
+  };
+
   const handleRedirectToDetails = (id) => {
     navigate(`/explore-workouts/${id}`);
   };
-  const getAllExcercises = async (selectedCategory, selectedIntensity) => {
-    let data = [];
-    if (selectedCategory && selectedIntensity) {
-      data = await axios.get(
-        `${baseUrl}/api/excercises?category=${selectedCategory}&intensity=${selectedIntensity}`
-      );
-    } else if (selectedCategory) {
-      data = await axios.get(
-        `${baseUrl}/api/excercises?category=${selectedCategory}`
-      );
-    } else if (selectedIntensity) {
-      data = await axios.get(
-        `${baseUrl}/api/excercises?intensity=${selectedIntensity}`
-      );
-    } else {
-      data = await axios.get(`${baseUrl}/api/excercises`);
-    }
+  const getAllExcercises = async (
+    selectedCategory,
+    selectedIntensity,
+    selectedBodyRegion
+  ) => {
+    const data = await axios.get(
+      `${baseUrl}/api/excercises?category=${selectedCategory}&intensity=${selectedIntensity}&bodyRegion=${selectedBodyRegion}`
+    );
     const excercises = AddThumbnailToExcerciseData(data.data);
     setExcerciseData(excercises);
   };
@@ -82,12 +84,13 @@ function ExploreWorkouts() {
   };
 
   useEffect(() => {
-    getAllExcercises(category, intensity);
-  }, [category, intensity]);
+    getAllExcercises(category, intensity, bodyRegion);
+  }, [category, intensity, bodyRegion]);
 
   useEffect(() => {
     getAllCategories();
     getAllIntensities();
+    getAllBodyRegion();
   }, []);
 
   return (
@@ -107,6 +110,12 @@ function ExploreWorkouts() {
               value={intensity}
               handleSelectChange={handleIntensityChange}
               options={intensityOptions}
+            />
+            <SelectDropdown
+              title={"Select Body Region"}
+              value={bodyRegion}
+              handleSelectChange={handleBodyRegionChange}
+              options={bodyRegionOptions}
             />
           </div>
           <div className="excercise__card-container">
