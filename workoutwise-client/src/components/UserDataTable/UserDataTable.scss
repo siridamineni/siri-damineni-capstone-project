@@ -11,7 +11,7 @@
   border-radius: 10px;
   height: 400px;
   margin: 10px;
-  width: 80%;
+  width: calc(100% - 100px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
@@ -29,7 +29,7 @@
 }
 
 .user-data__cell {
-  padding: 10px;
+  padding: 5px;
   flex: 1;
 }
 
@@ -42,6 +42,7 @@
 
 .user-data__heading {
   @include text-style($font-weight: 900);
+  text-wrap: nowrap;
 }
 
 .user-data__value {

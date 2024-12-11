@@ -40,7 +40,7 @@
   }
   &__radio-btn-container {
     @include flexbox($flex-direction: row, $justify-content: flex-start);
-    width: 100%;
+    width: 55%;
   }
   &__each-radio-btn-container {
     @include flexbox($flex-direction: row, $justify-content: flex-start);

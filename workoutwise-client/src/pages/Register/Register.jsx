@@ -100,7 +100,7 @@ function Register() {
           <FormField
             label="First Name"
             name="firstName"
-            placeholder="Enter your First Name"
+            placeholder="enter your first name"
             inputValue={registerData.firstName}
             handleChange={handleChange}
             type="text"
@@ -110,7 +110,7 @@ function Register() {
           <FormField
             label="Last Name"
             name="lastName"
-            placeholder="Enter your Last Name"
+            placeholder="enter your last name"
             inputValue={registerData.lastName}
             handleChange={handleChange}
             type="text"
@@ -120,7 +120,7 @@ function Register() {
           <FormField
             label="Email"
             name="email"
-            placeholder="Enter your Email"
+            placeholder="enter your email"
             inputValue={registerData.email}
             handleChange={handleChange}
             type="text"
@@ -157,7 +157,7 @@ function Register() {
           <FormField
             label="Password"
             name="password"
-            placeholder="Enter your Password"
+            placeholder="enter your password"
             inputValue={registerData.password}
             handleChange={handleChange}
             type="password"
@@ -167,7 +167,7 @@ function Register() {
           <FormField
             label="Confirm Password"
             name="cfrmPassword"
-            placeholder="Confirm your Password"
+            placeholder="confirm your password"
             inputValue={registerData.cfrmPassword}
             handleChange={handleChange}
             type="password"

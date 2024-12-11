@@ -76,7 +76,7 @@ function Login() {
           <FormField
             label="email"
             name="email"
-            placeholder="Enter the Email"
+            placeholder="enter the email"
             inputValue={loginData.email}
             handleChange={handleChange}
             type="email"
@@ -86,7 +86,7 @@ function Login() {
           <FormField
             label="password"
             name="password"
-            placeholder="Enter the Password"
+            placeholder="enter the password"
             inputValue={loginData.password}
             handleChange={handleChange}
             type="password"

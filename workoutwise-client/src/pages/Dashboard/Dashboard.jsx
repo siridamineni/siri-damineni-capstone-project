@@ -35,18 +35,20 @@ function Dashboard() {
         "Excercise Name",
         "Category",
         "Body Region",
-        "Repeation Count",
+        "Repeat Count",
       ];
-      const columns = response.data.map((item) => {
-        return {
-          id: item.id,
-          date: item.date,
-          excerciseName: item.exercise_name,
-          category: item.category,
-          bodyRegion: item.body_region,
-          repeatCount: item.rep_count,
-        };
-      });
+      const columns = response.data
+        .map((item) => {
+          return {
+            id: item.id,
+            date: item.date,
+            excerciseName: item.exercise_name,
+            category: item.category,
+            bodyRegion: item.body_region,
+            repeatCount: item.rep_count,
+          };
+        })
+        .reverse();
       setUserTableData({ rows, columns });
     } catch (error) {
       toast.error(error.response.data.error);
@@ -71,7 +73,7 @@ function Dashboard() {
     try {
       const result = await axios.delete(`${baseUrl}/api/user-details/${id}`);
       setIsDeleted(true);
-      toast.success("Selected User Data deleted Successfully");
+      toast.success("Workout History deleted Successfully");
     } catch (error) {
       toast.error(error.response.data.error);
     }
@@ -87,11 +89,8 @@ function Dashboard() {
   useEffect(() => {
     getUserData(userId);
     getAllUserDataById(userId);
-  }, [userId, isDeleted]);
-
-  useEffect(() => {
     getExerciseCountByBodyRegion(userId);
-  }, [userId]);
+  }, [userId, isDeleted]);
 
   return (
     <main className="main-wrapper">

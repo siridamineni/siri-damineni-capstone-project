@@ -2,8 +2,11 @@
 @use "../../styles/partials/variables" as *;
 .button {
   background-color: $primary;
-  border: none;
+  border: 1px solid black;
   cursor: pointer;
+  width: 100px;
+  padding: 8px 14px;
+  border-radius: 10px;
   @include flexbox($justify-content: center, $align-items: center);
   @include text-style(
     $color: $white,

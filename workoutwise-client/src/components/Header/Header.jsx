@@ -3,6 +3,7 @@ import logo from "../../assets/images/image.png";
 import { TOKEN_NAME } from "../../shared/constants";
 import { useNavigate } from "react-router-dom";
 import logout from "../../assets/icons/logout.svg";
+import UserProfile from "../../assets/images/user-profile.png";
 function Header() {
   const navigate = useNavigate();
   const token = localStorage.getItem(TOKEN_NAME);
@@ -30,13 +31,18 @@ function Header() {
           </ul>
         )}
       </nav>
-      {token && (
+      {/* {token && (
         <div className="header__greetings">
           <p>Hello Siri!</p>
         </div>
+      )} */}
+      {token && (
+        <div className="profile__block">
+          <img className="profile__img" src={UserProfile} alt="userProfile" />
+        </div>
       )}
       {token && (
-        <div onClick={handleLogout}>
+        <div onClick={handleLogout} className="header__logout">
           <img className="header__icon" src={logout} alt="logout icon" />
         </div>
       )}
