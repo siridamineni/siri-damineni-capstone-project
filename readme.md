@@ -1,5 +1,5 @@
 > [!NOTE]
->  PLease Check Develop Branch for Updated Version
+>  Please Check Develop Branch for Updated Version
 # Project Title
 
 WorkoutWise
